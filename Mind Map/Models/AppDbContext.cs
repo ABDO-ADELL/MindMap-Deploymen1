@@ -15,12 +15,24 @@ namespace Mind_Map.Models
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Domain> Domains { get; set; }
-        public DbSet<ScoringOption> ScoringOptions { get; set; } 
+        public DbSet<ScoringOption> ScoringOptions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Relationships
-            modelBuilder.Entity<Assessment>()
+
+            // Ensure all string properties use nvarchar for Unicode support
+            modelBuilder.Entity<UserChatBotHistory>()
+                .Property(e => e.UserMessage)
+                .HasColumnType("nvarchar(max)");
+
+            modelBuilder.Entity<UserChatBotHistory>()
+                .Property(e => e.BotResponse)
+                .HasColumnType("nvarchar(max)");
+
+            base.OnModelCreating(modelBuilder);
+        
+        // Relationships
+        modelBuilder.Entity<Assessment>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Assessments)
                 .HasForeignKey(a => a.UserId);
@@ -52,69 +64,76 @@ namespace Mind_Map.Models
 
             // Seed Domains (Level 1 and Level 2)
             modelBuilder.Entity<Domain>().HasData(
-                // Level 1 Domains (existing)
-                new Domain { Id = 1, Name = "Depression", PotentialDisorder = "Depressive Disorders", Threshold = 2, Recommendation = "Your responses suggest possible depression. Consider the PROMIS Emotional Distress—Depression—Short Form and consult a mental health professional.", Level = "Level 1" },
-                new Domain { Id = 2, Name = "Anger", PotentialDisorder = "Anger-Related Issues", Threshold = 2, Recommendation = "Your responses indicate potential anger issues. Consider the PROMIS Emotional Distress—Anger—Short Form and consult a mental health professional.", Level = "Level 1" },
-                new Domain { Id = 3, Name = "Mania", PotentialDisorder = "Bipolar Disorder or Manic Episodes", Threshold = 2, Recommendation = "Your responses suggest possible manic symptoms. Consider the Altman Self-Rating Mania Scale and consult a mental health professional.", Level = "Level 1" },
-                new Domain { Id = 4, Name = "Anxiety", PotentialDisorder = "Anxiety Disorders", Threshold = 2, Recommendation = "Your responses indicate possible anxiety. Consider the PROMIS Emotional Distress—Anxiety—Short Form and consult a mental health professional.", Level = "Level 1" },
-                new Domain { Id = 5, Name = "Somatic Symptoms", PotentialDisorder = "Somatic Symptom Disorders", Threshold = 2, Recommendation = "Your responses suggest physical symptoms that may be stress-related. Consider the Patient Health Questionnaire 15 (PHQ-15) and consult a medical professional.", Level = "Level 1" },
-                new Domain { Id = 6, Name = "Suicidal Ideation", PotentialDisorder = "Suicidal Ideation", Threshold = 1, Recommendation = "Urgent: Your responses indicate thoughts of self-harm. Please contact a mental health professional or crisis hotline immediately.", Level = "Level 1" },
-                new Domain { Id = 7, Name = "Psychosis", PotentialDisorder = "Psychotic Disorders", Threshold = 1, Recommendation = "Urgent: Your responses suggest possible psychotic symptoms. Please consult a mental health professional immediately.", Level = "Level 1" },
-                new Domain { Id = 8, Name = "Sleep Problems", PotentialDisorder = "Sleep Disorders", Threshold = 2, Recommendation = "Your responses indicate sleep difficulties. Consider the PROMIS—Sleep Disturbance—Short Form and consult a sleep specialist or mental health professional.", Level = "Level 1" },
-                new Domain { Id = 9, Name = "Memory", PotentialDisorder = "Cognitive Impairment", Threshold = 2, Recommendation = "Your responses suggest memory issues. Consult a neurologist or mental health professional for a cognitive assessment.", Level = "Level 1" },
-                new Domain { Id = 10, Name = "Repetitive Thoughts and Behaviors", PotentialDisorder = "Obsessive-Compulsive Disorder (OCD)", Threshold = 2, Recommendation = "Your responses suggest possible OCD. Consider the Florida Obsessive-Compulsive Inventory (FOCI) Severity Scale and consult a mental health professional.", Level = "Level 1" },
-                new Domain { Id = 11, Name = "Dissociation", PotentialDisorder = "Dissociative Disorders", Threshold = 2, Recommendation = "Your responses indicate possible dissociation. Consult a mental health professional for a specialized assessment.", Level = "Level 1" },
-                new Domain { Id = 12, Name = "Personality Functioning", PotentialDisorder = "Personality Disorders", Threshold = 2, Recommendation = "Your responses suggest challenges with identity or relationships. Consult a mental health professional for a personality assessment.", Level = "Level 1" },
-                new Domain { Id = 13, Name = "Substance Use", PotentialDisorder = "Substance Use Disorders", Threshold = 1, Recommendation = "Your responses indicate possible substance misuse. Consider the NIDA-modified ASSIST and consult a substance abuse specialist.", Level = "Level 1" },
-                // Level 2 Domains (new)
-                new Domain { Id = 14, Name = "Anxiety", PotentialDisorder = "Anxiety Disorders", Threshold = 60, Recommendation = "Your responses indicate significant anxiety symptoms. Consult a mental health professional for further evaluation.", Level = "Level 2" }, // T-score ≥ 60 (Moderate)
-                new Domain { Id = 15, Name = "Mania", PotentialDisorder = "Bipolar Disorder or Manic Episodes", Threshold = 6, Recommendation = "Your responses suggest a high probability of manic symptoms. Consult a mental health professional immediately.", Level = "Level 2" }, // Score ≥ 6
-                new Domain { Id = 16, Name = "Repetitive Thoughts and Behaviors", PotentialDisorder = "Obsessive-Compulsive Disorder (OCD)", Threshold = 8, Recommendation = "Your responses suggest significant OCD symptoms. Consult a mental health professional for further evaluation.", Level = "Level 2" }, // Score ≥ 8
-                new Domain { Id = 17, Name = "PTSD", PotentialDisorder = "Post-Traumatic Stress Disorder", Threshold = 33, Recommendation = "Your responses indicate significant PTSD symptoms. Consult a mental health professional for further evaluation.", Level = "Level 2" }, // Score ≥ 33 (suggested cutoff)
-                new Domain { Id = 18, Name = "Psychosis", PotentialDisorder = "Psychotic Disorders", Threshold = 2, Recommendation = "Your responses suggest possible psychotic symptoms. Consult a mental health professional immediately.", Level = "Level 2" }, // Score ≥ 2 (mild or greater)
-                new Domain { Id = 19, Name = "ADHD", PotentialDisorder = "Attention-Deficit/Hyperactivity Disorder", Threshold = 4, Recommendation = "Your responses suggest possible ADHD symptoms. Consult a mental health professional for further evaluation.", Level = "Level 2" } // 4+ shaded boxes in Part A
-            );
+
+        // Level 1 Domains (existing)
+        new Domain { Id = 1, Name = "Depression", PotentialDisorder = "اضطرابات الاكتئاب", Threshold = 2, Recommendation = "تشير إجاباتك إلى احتمال وجود اكتئاب. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - الاكتئاب - النموذج المختصر واستشارة أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 2, Name = "Anger", PotentialDisorder = "مشاكل متعلقة بالغضب", Threshold = 2, Recommendation = "تشير إجاباتك إلى وجود مشاكل محتملة في الغضب. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - الغضب - النموذج المختصر واستشارة أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 3, Name = "Mania", PotentialDisorder = "اضطراب ثنائي القطب أو نوبات الهوس", Threshold = 2, Recommendation = "تشير إجاباتك إلى احتمال وجود أعراض هوسية. يُنصح باستخدام مقياس التقييم الذاتي لهوس ألتمن واستشارة أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 4, Name = "Anxiety", PotentialDisorder = "اضطرابات القلق", Threshold = 2, Recommendation = "تشير إجاباتك إلى احتمال وجود قلق. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - القلق - النموذج المختصر واستشارة أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 5, Name = "Somatic Symptoms", PotentialDisorder = "اضطرابات الأعراض الجسدية", Threshold = 2, Recommendation = "تشير إجاباتك إلى أعراض جسدية قد تكون مرتبطة بالتوتر. يُنصح باستخدام استبيان صحة المريض 15 (PHQ-15) واستشارة أخصائي طبي.", Level = "Level 1" },
+        new Domain { Id = 6, Name = "Suicidal Ideation", PotentialDisorder = "أفكار انتحارية", Threshold = 1, Recommendation = "عاجل: تشير إجاباتك إلى أفكار إيذاء النفس. يرجى الاتصال بأخصائي صحة نفسية أو خط الأزمة فوراً.", Level = "Level 1" },
+        new Domain { Id = 7, Name = "Psychosis", PotentialDisorder = "اضطرابات ذهانية", Threshold = 1, Recommendation = "عاجل: تشير إجاباتك إلى أعراض ذهانية محتملة. يرجى استشارة أخصائي صحة نفسية فوراً.", Level = "Level 1" },
+        new Domain { Id = 8, Name = "Sleep Problems", PotentialDisorder = "اضطرابات النوم", Threshold = 2, Recommendation = "تشير إجاباتك إلى صعوبات في النوم. يُنصح بالنظر في نموذج PROMIS للاضطرابات النوم - النموذج المختصر واستشارة أخصائي نوم أو أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 9, Name = "Memory", PotentialDisorder = "ضعف إدراكي", Threshold = 2, Recommendation = "تشير إجاباتك إلى مشاكل في الذاكرة. يُنصح باستشارة طبيب أعصاب أو أخصائي صحة نفسية لإجراء تقييم إدراكي.", Level = "Level 1" },
+        new Domain { Id = 10, Name = "Repetitive Thoughts and Behaviors", PotentialDisorder = "اضطراب الوسواس القهري (OCD)", Threshold = 2, Recommendation = "تشير إجاباتك إلى احتمال وجود اضطراب الوسواس القهري. يُنصح باستخدام مقياس شدة فلويدا للوسواس القهري (FOCI) واستشارة أخصائي صحة نفسية.", Level = "Level 1" },
+        new Domain { Id = 11, Name = "Dissociation", PotentialDisorder = "اضطرابات انفصام الشخصية", Threshold = 2, Recommendation = "تشير إجاباتك إلى احتمال وجود انفصال نفسي. يُنصح باستشارة أخصائي صحة نفسية لتقييم متخصص.", Level = "Level 1" },
+        new Domain { Id = 12, Name = "Personality Functioning", PotentialDisorder = "اضطرابات الشخصية", Threshold = 2, Recommendation = "تشير إجاباتك إلى تحديات في الهوية أو العلاقات. يُنصح باستشارة أخصائي صحة نفسية لتقييم الشخصية.", Level = "Level 1" },
+        new Domain { Id = 13, Name = "Substance Use", PotentialDisorder = "اضطرابات تعاطي المواد", Threshold = 1, Recommendation = "تشير إجاباتك إلى احتمال سوء استخدام المواد. يُنصح باستخدام ASSIST المعدل من NIDA واستشارة أخصائي تعاطي المخدرات.", Level = "Level 1" },
+        // Level 2 Domains (new)
+        new Domain { Id = 14, Name = "Anxiety", PotentialDisorder = "اضطرابات القلق", Threshold = 60, Recommendation = "تشير إجاباتك إلى أعراض قلق كبيرة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.", Level = "Level 2" }, // T-score ≥ 60 (Moderate)
+        new Domain { Id = 15, Name = "Mania", PotentialDisorder = "اضطراب ثنائي القطب أو نوبات الهوس", Threshold = 6, Recommendation = "تشير إجاباتك إلى احتمال عالي لأعراض الهوس. يُنصح باستشارة أخصائي صحة نفسية فوراً.", Level = "Level 2" }, // Score ≥ 6
+        new Domain { Id = 16, Name = "Repetitive Thoughts and Behaviors", PotentialDisorder = "اضطراب الوسواس القهري (OCD)", Threshold = 8, Recommendation = "تشير إجاباتك إلى أعراض وسواس قهري كبيرة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.", Level = "Level 2" }, // Score ≥ 8
+        new Domain { Id = 17, Name = "PTSD", PotentialDisorder = "اضطراب ما بعد الصدمة", Threshold = 33, Recommendation = "تشير إجاباتك إلى أعراض كبيرة لاضطراب ما بعد الصدمة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.", Level = "Level 2" }, // Score ≥ 33 (suggested cutoff)
+        new Domain { Id = 18, Name = "Psychosis", PotentialDisorder = "اضطرابات ذهانية", Threshold = 2, Recommendation = "تشير إجاباتك إلى أعراض ذهانية محتملة. يُنصح باستشارة أخصائي صحة نفسية فوراً.", Level = "Level 2" }, // Score ≥ 2 (mild or greater)
+        new Domain { Id = 19, Name = "ADHD", PotentialDisorder = "اضطراب نقص الانتباه مع فرط النشاط", Threshold = 4, Recommendation = "تشير إجاباتك إلى أعراض محتملة لاضطراب نقص الانتباه مع فرط النشاط. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.", Level = "Level 2" } // 4+ shaded boxes in Part A
+    );
+
+
 
             // Seed Questions (Level 1 and Level 2)
             int questionId = 1;
             int scoringOptionId = 1;
 
-            // Level 1 Questions (existing)
+
+            // Level 1 Questions (existing) translated into Arabic
             modelBuilder.Entity<Question>().HasData(
-                new Question { Id = questionId++, Text = "Little interest or pleasure in doing things?", DomainId = 1 },
-                new Question { Id = questionId++, Text = "Feeling down, depressed, or hopeless?", DomainId = 1 },
-                new Question { Id = questionId++, Text = "Feeling more irritated, grouchy, or angry than usual?", DomainId = 2 },
-                new Question { Id = questionId++, Text = "Sleeping less than usual, but still have a lot of energy?", DomainId = 3 },
-                new Question { Id = questionId++, Text = "Starting lots more projects than usual or doing more risky things than usual?", DomainId = 3 },
-                new Question { Id = questionId++, Text = "Feeling nervous, anxious, frightened, worried, or on edge?", DomainId = 4 },
-                new Question { Id = questionId++, Text = "Feeling panic or being frightened?", DomainId = 4 },
-                new Question { Id = questionId++, Text = "Avoiding situations that make you anxious?", DomainId = 4 },
-                new Question { Id = questionId++, Text = "Unexplained aches and pains (e.g., head, back, joints, abdomen, legs)?", DomainId = 5 },
-                new Question { Id = questionId++, Text = "Feeling that your illnesses are not being taken seriously enough?", DomainId = 5 },
-                new Question { Id = questionId++, Text = "Thoughts of actually hurting yourself?", DomainId = 6 },
-                new Question { Id = questionId++, Text = "Hearing things other people couldn’t hear, such as voices even when no one was around?", DomainId = 7 },
-                new Question { Id = questionId++, Text = "Feeling that someone could hear your thoughts, or that you could hear what another person was thinking?", DomainId = 7 },
-                new Question { Id = questionId++, Text = "Problems with sleep that affected your sleep quality over all?", DomainId = 8 },
-                new Question { Id = questionId++, Text = "Problems with memory (e.g., learning new information) or with location (e.g., finding your way home)?", DomainId = 9 },
-                new Question { Id = questionId++, Text = "Unpleasant thoughts, urges, or images that repeatedly enter your mind?", DomainId = 10 },
-                new Question { Id = questionId++, Text = "Feeling driven to perform certain behaviors or mental acts over and over again?", DomainId = 10 },
-                new Question { Id = questionId++, Text = "Feeling detached or distant from yourself, your body, your physical surroundings, or your memories?", DomainId = 11 },
-                new Question { Id = questionId++, Text = "Not knowing who you really are or what you want out of life?", DomainId = 12 },
-                new Question { Id = questionId++, Text = "Not feeling close to other people or enjoying your relationships with them?", DomainId = 12 },
-                new Question { Id = questionId++, Text = "Drinking at least 4 drinks of any kind of alcohol in a single day?", DomainId = 13 },
-                new Question { Id = questionId++, Text = "Smoking any cigarettes, a cigar, or pipe, or using snuff or chewing tobacco?", DomainId = 13 },
-                new Question { Id = questionId++, Text = "Using any of the following medicines ON YOUR OWN, that is, without a doctor’s prescription, in greater amounts or longer than prescribed [e.g., painkillers (like Vicodin), stimulants (like Ritalin or Adderall), sedatives or tranquilizers (like sleeping pills or Valium), or drugs like marijuana, cocaine or crack, club drugs (like ecstasy), hallucinogens (like LSD), heroin, inhalants or solvents (like glue), or methamphetamine (like speed)]?", DomainId = 13 }
+                new Question { Id = questionId++, Text = "قلة الاهتمام أو المتعة في القيام بالأشياء؟", DomainId = 1 },
+                new Question { Id = questionId++, Text = "الشعور بالحزن أو الاكتئاب أو اليأس؟", DomainId = 1 },
+                new Question { Id = questionId++, Text = "الشعور بمزيد من التهيج أو الغضب أكثر من المعتاد؟", DomainId = 2 },
+                new Question { Id = questionId++, Text = "النوم أقل من المعتاد، ولكن لا تزال تملك الكثير من الطاقة؟", DomainId = 3 },
+                new Question { Id = questionId++, Text = "بدء المزيد من المشاريع من المعتاد أو القيام بأشياء أكثر خطورة من المعتاد؟", DomainId = 3 },
+                new Question { Id = questionId++, Text = "الشعور بالتوتر أو القلق أو الخوف أو القلق أو التوتر؟", DomainId = 4 },
+                new Question { Id = questionId++, Text = "الشعور بنوبات هلع أو الخوف؟", DomainId = 4 },
+                new Question { Id = questionId++, Text = "تجنب المواقف التي تجعلك تشعر بالقلق؟", DomainId = 4 },
+                new Question { Id = questionId++, Text = "آلام وأوجاع غير مفسرة (مثل الرأس، الظهر، المفاصل، البطن، الساقين)؟", DomainId = 5 },
+                new Question { Id = questionId++, Text = "الشعور بأن أمراضك لا تؤخذ على محمل الجد بما فيه الكفاية؟", DomainId = 5 },
+                new Question { Id = questionId++, Text = "أفكار عن إيذاء نفسك؟", DomainId = 6 },
+                new Question { Id = questionId++, Text = "سماع أشياء لا يستطيع الآخرون سماعها، مثل الأصوات حتى عندما لا يكون هناك أحد؟", DomainId = 7 },
+                new Question { Id = questionId++, Text = "الشعور بأن شخصاً ما يمكنه سماع أفكارك، أو أنك تستطيع سماع ما يفكر به شخص آخر؟", DomainId = 7 },
+                new Question { Id = questionId++, Text = "مشاكل في النوم أثرت على جودة نومك بشكل عام؟", DomainId = 8 },
+                new Question { Id = questionId++, Text = "مشاكل في الذاكرة (مثل تعلم معلومات جديدة) أو في المكان (مثل إيجاد طريقك إلى المنزل)؟", DomainId = 9 },
+                new Question { Id = questionId++, Text = "أفكار أو رغبات أو صور غير سارة تدخل ذهنك مرارًا وتكرارًا؟", DomainId = 10 },
+                new Question { Id = questionId++, Text = "الشعور بأنك مدفوع لأداء سلوكيات أو أعمال ذهنية معينة مرارًا وتكرارًا؟", DomainId = 10 },
+                new Question { Id = questionId++, Text = "الشعور بالانفصال أو البعد عن نفسك، جسدك، محيطك المادي، أو ذكرياتك؟", DomainId = 11 },
+                new Question { Id = questionId++, Text = "عدم معرفة من أنت حقًا أو ما تريد من الحياة؟", DomainId = 12 },
+                new Question { Id = questionId++, Text = "عدم الشعور بالقرب من الآخرين أو الاستمتاع بعلاقاتك معهم؟", DomainId = 12 },
+                new Question { Id = questionId++, Text = "شرب 4 مشروبات كحولية على الأقل في يوم واحد؟", DomainId = 13 },
+                new Question { Id = questionId++, Text = "تدخين أي سجائر أو سيجار أو غليون، أو استخدام السعوط أو مضغ التبغ؟", DomainId = 13 },
+                new Question { Id = questionId++, Text = "استخدام أي من الأدوية التالية بمفردك، أي بدون وصفة طبية، بجرعات أكبر أو لفترة أطول من الموصوفة [مثل مسكنات الألم (مثل فيكودين)، المنشطات (مثل ريتالين أو أدرال)، المهدئات أو المهدئات (مثل حبوب النوم أو فاليم)، أو المخدرات مثل الماريجوانا، الكوكايين أو الكراك، مخدرات النوادي (مثل الإكستاسي)، الهلوسة (مثل LSD)، الهيروين، الاستنشاق أو المذيبات (مثل الغراء)، أو الميثامفيتامين (مثل السريع)]؟", DomainId = 13 }
             );
+
 
             // Scoring Options for Level 1 Questions
             var level1ScoringOptions = new[]
             {
-                new { Score = 0, Description = "None/Not at all" },
-                new { Score = 1, Description = "Slight/Rare, less than a day or two" },
-                new { Score = 2, Description = "Mild/Several days" },
-                new { Score = 3, Description = "Moderate/More than half the days" },
-                new { Score = 4, Description = "Severe/Nearly every day" }
+
+                    new { Score = 0, Description = "لا شيء / لا على الإطلاق" },
+                    new { Score = 1, Description = "طفيف / نادر، أقل من يوم أو يومين" },
+                    new { Score = 2, Description = "خفيف / عدة أيام" },
+                    new { Score = 3, Description = "متوسط / أكثر من نصف الأيام" },
+                    new { Score = 4, Description = "شديد / تقريباً كل يوم" }
             };
+
             for (int i = 1; i <= 23; i++)
             {
                 foreach (var option in level1ScoringOptions)
@@ -127,23 +146,23 @@ namespace Mind_Map.Models
 
             // Level 2 Anxiety Questions
             var anxietyQuestions = new[]
-            {
-                "I felt fearful.",
-                "I felt anxious.",
-                "I felt worried.",
-                "I found it hard to focus on anything other than my anxiety.",
-                "I felt nervous.",
-                "I felt uneasy.",
-                "I felt tense."
-            };
+                   {
+                    "شعرت بالخوف.",
+                    "شعرت بالقلق.",
+                    "شعرت بالهم.",
+                    "وجدت صعوبة في التركيز على أي شيء غير قلقي.",
+                    "شعرت بالتوتر.",
+                    "شعرت بعدم الارتياح.",
+                    "شعرت بالتوتر الشديد."
+                };
             var anxietyScoringOptions = new[]
-            {
-                new { Score = 1, Description = "Never" },
-                new { Score = 2, Description = "Rarely" },
-                new { Score = 3, Description = "Sometimes" },
-                new { Score = 4, Description = "Often" },
-                new { Score = 5, Description = "Always" }
-            };
+{
+                    new { Score = 1, Description = "أبداً" },
+                    new { Score = 2, Description = "نادراً" },
+                    new { Score = 3, Description = "أحياناً" },
+                    new { Score = 4, Description = "غالباً" },
+                    new { Score = 5, Description = "دائماً" }
+                };
             foreach (var question in anxietyQuestions)
             {
                 modelBuilder.Entity<Question>().HasData(
@@ -159,21 +178,22 @@ namespace Mind_Map.Models
             }
 
             // Level 2 Mania Questions
+
             var maniaQuestions = new[]
-            {
-                "Feel happier or more cheerful than usual.",
-                "Feel more self-confident than usual.",
-                "Need less sleep than usual.",
-                "Talk more than usual.",
-                "Been more active (either socially, sexually, at work, home, or school) than usual."
+                        {
+                "الشعور بسعادة أو بهجة أكثر من المعتاد.",
+                "الشعور بثقة بالنفس أكثر من المعتاد.",
+                "الحاجة إلى نوم أقل من المعتاد.",
+                "التحدث أكثر من المعتاد.",
+                "أن تكون أكثر نشاطاً (اجتماعياً، جنسياً، في العمل، المنزل، أو المدرسة) من المعتاد."
             };
             var maniaScoringOptions = new[]
             {
-                new { Score = 0, Description = "Not at all" },
-                new { Score = 1, Description = "Occasionally" },
-                new { Score = 2, Description = "Often" },
-                new { Score = 3, Description = "Frequently" },
-                new { Score = 4, Description = "All the time" }
+                new { Score = 0, Description = "لا على الإطلاق" },
+                new { Score = 1, Description = "أحياناً" },
+                new { Score = 2, Description = "غالباً" },
+                new { Score = 3, Description = "كثيراً" },
+                new { Score = 4, Description = "طوال الوقت" }
             };
             foreach (var question in maniaQuestions)
             {
@@ -190,22 +210,23 @@ namespace Mind_Map.Models
             }
 
             // Level 2 OCD Questions
+
             var ocdQuestions = new[]
-            {
-                "On average, how much time is occupied by these thoughts or behaviors each day?",
-                "How much distress do these thoughts or behaviors cause you?",
-                "How hard is it for you to control these thoughts or behaviors?",
-                "How much do these thoughts or behaviors cause you to avoid doing anything, going anyplace, or being with anyone?",
-                "How much do these thoughts or behaviors interfere with school, work, or your social or family life?"
-            };
+                            {
+                    "كم من الوقت يشغلك في المتوسط هذه الأفكار أو السلوكيات يومياً؟",
+                    "ما مدى الضيق الذي تسببه لك هذه الأفكار أو السلوكيات؟",
+                    "ما مدى صعوبة التحكم في هذه الأفكار أو السلوكيات؟",
+                    "ما مدى تسبب هذه الأفكار أو السلوكيات في تجنبك القيام بأي شيء، أو الذهاب إلى أي مكان، أو التواجد مع أي شخص؟",
+                    "ما مدى تأثير هذه الأفكار أو السلوكيات على دراستك أو عملك أو حياتك الاجتماعية أو العائلية؟"
+                };
             var ocdScoringOptions = new[]
             {
-                new { Score = 0, Description = "None" },
-                new { Score = 1, Description = "Mild" },
-                new { Score = 2, Description = "Moderate" },
-                new { Score = 3, Description = "Severe" },
-                new { Score = 4, Description = "Extreme" }
-            };
+                    new { Score = 0, Description = "لا شيء" },
+                    new { Score = 1, Description = "خفيف" },
+                    new { Score = 2, Description = "متوسط" },
+                    new { Score = 3, Description = "شديد" },
+                    new { Score = 4, Description = "شديد جداً" }
+                };
             foreach (var question in ocdQuestions)
             {
                 modelBuilder.Entity<Question>().HasData(
@@ -221,37 +242,38 @@ namespace Mind_Map.Models
             }
 
             // Level 2 PTSD Questions
+
             var ptsdQuestions = new[]
-            {
-                "Repeated, disturbing, and unwanted memories of the stressful experience?",
-                "Repeated, disturbing dreams of the stressful experience?",
-                "Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were actually back there reliving it)?",
-                "Feeling very upset when something reminded you of the stressful experience?",
-                "Having strong physical reactions when something reminded you of the stressful experience (for example, heart pounding, trouble breathing, sweating)?",
-                "Avoiding memories, thoughts, or feelings related to the stressful experience?",
-                "Avoiding external reminders of the stressful experience (for example, people, places, conversations, activities, objects, or situations)?",
-                "Trouble remembering important parts of the stressful experience?",
-                "Having strong negative beliefs about yourself, other people, or the world (for example, having thoughts such as: I am bad, there is something seriously wrong with me, no one can be trusted, the world is completely dangerous)?",
-                "Blaming yourself or someone else for the stressful experience or what happened after it?",
-                "Having strong negative feelings such as fear, horror, anger, guilt, or shame?",
-                "Loss of interest in activities that you used to enjoy?",
-                "Feeling distant or cut off from other people?",
-                "Trouble experiencing positive feelings (for example, being unable to feel happiness or have loving feelings for people close to you)?",
-                "Irritable behavior, angry outbursts, or acting aggressively?",
-                "Taking too many risks or doing things that could cause you harm?",
-                "Being 'superalert' or watchful or on guard?",
-                "Feeling jumpy or easily startled?",
-                "Having difficulty concentrating?",
-                "Trouble falling or staying asleep?"
-            };
+                            {
+                    "ذكريات متكررة ومزعجة وغير مرغوب فيها للتجربة المجهدة؟",
+                    "أحلام متكررة ومزعجة عن التجربة المجهدة؟",
+                    "الشعور فجأة أو التصرف كما لو أن التجربة المجهدة تحدث مرة أخرى (كما لو كنت تعيشها فعلاً مرة أخرى)؟",
+                    "الشعور بالانزعاج الشديد عندما يذكرك شيء بالتجربة المجهدة؟",
+                    "وجود ردود فعل جسدية قوية عندما يذكرك شيء بالتجربة المجهدة (مثل خفقان القلب، صعوبة في التنفس، التعرق)؟",
+                    "تجنب الذكريات أو الأفكار أو المشاعر المتعلقة بالتجربة المجهدة؟",
+                    "تجنب المثيرات الخارجية التي تذكرك بالتجربة المجهدة (مثل الأشخاص، الأماكن، المحادثات، الأنشطة، الأشياء، أو المواقف)؟",
+                    "صعوبة في تذكر أجزاء مهمة من التجربة المجهدة؟",
+                    "وجود معتقدات سلبية قوية عن نفسك أو الآخرين أو العالم (مثل أفكار: أنا سيء، هناك شيء خطير خاطئ بي، لا يمكن الوثوق بأحد، العالم خطير تماماً)؟",
+                    "لوم نفسك أو شخص آخر على التجربة المجهدة أو ما حدث بعدها؟",
+                    "وجود مشاعر سلبية قوية مثل الخوف، الرعب، الغضب، الذنب، أو الخجل؟",
+                    "فقدان الاهتمام بالأنشطة التي كنت تستمتع بها؟",
+                    "الشعور بالبعد أو الانفصال عن الآخرين؟",
+                    "صعوبة في تجربة المشاعر الإيجابية (مثل عدم القدرة على الشعور بالسعادة أو الحب تجاه الأشخاص المقربين)؟",
+                    "سلوك سريع الغضب، نوبات غضب، أو التصرف بعدوانية؟",
+                    "المخاطرة المفرطة أو القيام بأشياء قد تسبب لك الأذى؟",
+                    "كونك 'متيقظاً جداً' أو مراقباً أو في حالة حذر؟",
+                    "الشعور بالتوتر أو القفز بسهولة؟",
+                    "صعوبة في التركيز؟",
+                    "صعوبة في النوم أو البقاء نائماً؟"
+                };
             var ptsdScoringOptions = new[]
             {
-                new { Score = 0, Description = "Not at all" },
-                new { Score = 1, Description = "A little bit" },
-                new { Score = 2, Description = "Moderately" },
-                new { Score = 3, Description = "Quite a bit" },
-                new { Score = 4, Description = "Extremely" }
-            };
+                    new { Score = 0, Description = "لا على الإطلاق" },
+                    new { Score = 1, Description = "قليلاً" },
+                    new { Score = 2, Description = "بشكل معتدل" },
+                    new { Score = 3, Description = "إلى حد كبير" },
+                    new { Score = 4, Description = "بشكل شديد" }
+                };
             foreach (var question in ptsdQuestions)
             {
                 modelBuilder.Entity<Question>().HasData(
@@ -267,25 +289,27 @@ namespace Mind_Map.Models
             }
 
             // Level 2 Psychosis Questions
+
             var psychosisQuestions = new[]
-            {
-                "Hallucinations",
-                "Delusions",
-                "Disorganized speech",
-                "Abnormal psychomotor behavior",
-                "Negative symptoms (restricted emotional expression or avolition)",
-                "Impaired cognition",
-                "Depression",
-                "Mania"
-            };
+                            {
+                    "الهلاوس",
+                    "الأوهام",
+                    "الكلام غير المنظم",
+                    "السلوك النفسي الحركي الشاذ",
+                    "الأعراض السلبية (تعبير عاطفي محدود أو انعدام الدافع)",
+                    "الاضطراب المعرفي",
+                    "الاكتئاب",
+                    "الجنون"
+                };
+
             var psychosisScoringOptions = new[]
             {
-                new { Score = 0, Description = "Not present" },
-                new { Score = 1, Description = "Equivocal" },
-                new { Score = 2, Description = "Present, but mild" },
-                new { Score = 3, Description = "Present and moderate" },
-                new { Score = 4, Description = "Present and severe" }
-            };
+                    new { Score = 0, Description = "غير موجود" },
+                    new { Score = 1, Description = "غير واضح" },
+                    new { Score = 2, Description = "موجود، ولكن خفيف" },
+                    new { Score = 3, Description = "موجود ومعتدل" },
+                    new { Score = 4, Description = "موجود وشديد" }
+                };
             foreach (var question in psychosisQuestions)
             {
                 modelBuilder.Entity<Question>().HasData(
@@ -301,34 +325,36 @@ namespace Mind_Map.Models
             }
 
             // Level 2 ADHD Questions
+
             var adhdQuestions = new[]
-            {
-                "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?",
-                "How often do you have difficulty getting things in order when you have to do a task that requires organization?",
-                "How often do you have problems remembering appointments or obligations?",
-                "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?",
-                "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?",
-                "How often do you feel overly active and compelled to do things, like you were driven by a motor?",
-                "How often do you make careless mistakes when you have to work on a boring or difficult project?",
-                "How often do you have difficulty keeping your attention when you are doing boring or repetitive work?",
-                "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",
-                "How often do you misplace or have difficulty finding things at home or at work?",
-                "How often are you distracted by activity or noise around you?",
-                "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?",
-                "How often do you feel restless or fidgety?",
-                "How often do you have difficulty unwinding and relaxing when you have time to yourself?",
-                "How often do you find yourself talking too much when you are in social situations?",
-                "When you're in a conversation, how often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",
-                "How often do you have difficulty waiting your turn in situations when turn taking is required?",
-                "How often do you interrupt others when they are busy?"
+             {
+                "كم مرة تواجه صعوبة في إنهاء التفاصيل النهائية لمشروع، بعد أن يتم إنجاز الأجزاء الصعبة؟",
+                "كم مرة تواجه صعوبة في ترتيب الأشياء عندما يتعين عليك أداء مهمة تتطلب التنظيم؟",
+                "كم مرة تواجه صعوبة في تذكر المواعيد أو الالتزامات؟",
+                "عندما يكون لديك مهمة تتطلب الكثير من التفكير، كم مرة تتجنب أو تؤجل البدء بها؟",
+                "كم مرة تتحرك أو تزعج يديك أو قدميك عندما يتعين عليك الجلوس لفترة طويلة؟",
+                "كم مرة تشعر بالنشاط المفرط وترغب في القيام بالأشياء، وكأنك مدفوع بمحرك؟",
+                "كم مرة ترتكب أخطاء غير مبالية عندما يتعين عليك العمل على مشروع ممل أو صعب؟",
+                "كم مرة تجد صعوبة في الحفاظ على انتباهك عندما تقوم بعمل ممل أو متكرر؟",
+                "كم مرة تجد صعوبة في التركيز على ما يقوله الناس لك، حتى عندما يتحدثون إليك مباشرة؟",
+                "كم مرة تضع أو تجد صعوبة في العثور على الأشياء في المنزل أو في العمل؟",
+                "كم مرة يتم تشتيتك بسبب النشاط أو الضوضاء من حولك؟",
+                "كم مرة تغادر مقعدك في الاجتماعات أو في المواقف التي يُتوقع منك البقاء جالسًا فيها؟",
+                "كم مرة تشعر بالقلق أو التململ؟",
+                "كم مرة تجد صعوبة في الاسترخاء عندما يكون لديك وقت لنفسك؟",
+                "كم مرة تجد نفسك تتحدث كثيرًا عندما تكون في مواقف اجتماعية؟",
+                "عندما تكون في محادثة، كم مرة تجد نفسك تكمل جمل الأشخاص الذين تتحدث معهم قبل أن يتمكنوا من إتمامها بأنفسهم؟",
+                "كم مرة تجد صعوبة في الانتظار لدورك في المواقف التي يتطلب فيها أخذ الدور؟",
+                "كم مرة تقاطع الآخرين عندما يكونون مشغولين؟"
             };
             var adhdScoringOptions = new[]
             {
-                new { Score = 0, Description = "Never" },
-                new { Score = 1, Description = "Rarely" },
-                new { Score = 2, Description = "Sometimes" },
-                new { Score = 3, Description = "Often" },
-                new { Score = 4, Description = "Very Often" }
+
+                new { Score = 0, Description = "أبدًا" },
+                new { Score = 1, Description =  "نادراً"},
+                new { Score = 2, Description = " أحياناً"},
+                new { Score = 3, Description = " غالباً"},
+                new { Score = 4, Description = "كثيراً جداً"}
             };
             foreach (var question in adhdQuestions)
             {
@@ -346,14 +372,25 @@ namespace Mind_Map.Models
 
 
             // Optional: Seed initial personality traits
-            modelBuilder.Entity<PersonalityTrait>().HasData(
-    new PersonalityTrait { Id = 1, Name = "Extraversion", Description = "Describes sociability vs. reservedness" },
-    new PersonalityTrait { Id = 2, Name = "Intuition", Description = "Focus on patterns vs. facts" },
-    new PersonalityTrait { Id = 3, Name = "Thinking", Description = "Logic vs. empathy" },
-    new PersonalityTrait { Id = 4, Name = "Judging", Description = "Preference for order vs. spontaneity" },
-    new PersonalityTrait { Id = 5, Name = "Assertiveness", Description = "Self-assurance vs. sensitivity" });
 
-         
-                }
+
+            modelBuilder.Entity<PersonalityTrait>().HasData(
+    new PersonalityTrait { Id = 1, Name = "الانفتاح", Description = "تصف الميل إلى الاجتماعي مقابل التحفظ" },
+    new PersonalityTrait { Id = 2, Name = "الحدس", Description = "التركيز على الأنماط مقابل الحقائق" },
+    new PersonalityTrait { Id = 3, Name = "التفكير", Description = "المنطق مقابل التعاطف" },
+    new PersonalityTrait { Id = 4, Name = "الحكم", Description = "التفضيل نحو النظام مقابل العفوية" },
+    new PersonalityTrait { Id = 5, Name = "الحزم", Description = "الثقة بالنفس مقابل الحساسية" });
+
+
+            //            modelBuilder.Entity<PersonalityTrait>().HasData(
+            //           new PersonalityTrait { Id = 1, Name = "Extraversion", Description = "Describes sociability vs. reservedness" },
+            //new PersonalityTrait { Id = 2, Name = "Intuition", Description = "Focus on patterns vs. facts" },
+            //new PersonalityTrait { Id = 3, Name = "Thinking", Description = "Logic vs. empathy" },
+            //new PersonalityTrait { Id = 4, Name = "Judging", Description = "Preference for order vs. spontaneity" },
+            //new PersonalityTrait { Id = 5, Name = "Assertiveness", Description = "Self-assurance vs. sensitivity" });
+
+
+
         }
     }
+}

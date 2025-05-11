@@ -21,14 +21,12 @@ namespace Mind_Map.Controllers
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterUser command)
-        {
-            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == command.Email);
+        {var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == command.Email);
             if (existingUser != null)
             {
                 return BadRequest(new { Message = "Email is already taken." });
             }
-
-            var user = new User
+             var user = new User
             {
                 Name = command.UserName,
                 Email = command.Email,

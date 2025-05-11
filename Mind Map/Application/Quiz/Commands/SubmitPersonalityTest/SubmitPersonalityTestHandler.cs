@@ -42,92 +42,69 @@ namespace Mind_Map.Application.Quiz.Commands.SubmitPersonalityTest
             var answersByTrait = new Dictionary<int, List<int>>();
             for (int i = 1; i <= 5; i++)
                 answersByTrait[i] = new List<int>();
-
             for (int i = 0; i < request.Answers.Count; i++)
-            {
-                int traitId = _questionToTraitMap[i];
-                answersByTrait[traitId].Add(request.Answers[i]);
-            }
+            {int traitId = _questionToTraitMap[i];
+                answersByTrait[traitId].Add(request.Answers[i]);}
 
             // Process each trait and save answers
             foreach (var traitEntry in answersByTrait)
-            {
-                int traitId = traitEntry.Key;
+            {int traitId = traitEntry.Key;
                 var scores = traitEntry.Value;
-
-                // Calculate average score for the trait
                 double avgScore = scores.Average();
-
                 // Save to database
                 var response = new PersonalityTestAns
-                {
-                    UserId = request.UserId,
+                {UserId = request.UserId,
                     TraitId = traitId,
-                    Score = (int)Math.Round(avgScore)
-                };
+                    Score = (int)Math.Round(avgScore)};
+                _context.PersonalityTestAnswers.Add(response);}
+                await _context.SaveChangesAsync(cancellationToken);
 
-                _context.PersonalityTestAnswers.Add(response);
-            }
-
-            await _context.SaveChangesAsync(cancellationToken);
 
             // Calculate personality type and percentages
             var (personalityType, traitPercentages) = CalculatePersonalityType(answersByTrait);
-
             // Update user's personality type
             var user = await _context.Users.FindAsync(request.UserId);
             if (user != null)
-            {
-                user.PersonalityType = personalityType;
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-
+            {user.PersonalityType = personalityType;
+                await _context.SaveChangesAsync(cancellationToken);}
             // Save test result
             var testResult = new TestResult
-            {
-                UserId = request.UserId,
+            {UserId = request.UserId,
                 PersonalityType = personalityType,
-                DateTaken = DateTime.UtcNow
-            };
-
+                DateTaken = DateTime.UtcNow};
             _context.TestResults.Add(testResult);
             await _context.SaveChangesAsync(cancellationToken);
-
             // Create named trait percentages for response
             var traitNames = new Dictionary<int, string>
-            {
-                { 1, "Extraversion/Introversion" },
-                { 2, "Sensing/Intuition" },
-                { 3, "Thinking/Feeling" },
-                { 4, "Judging/Perceiving" },
-                { 5, "Assertive/Turbulent" }
-            };
-
+            {{ 1, "الانفتاح/الانطوائيه" },
+                { 2, "الفهم/الحدس" },
+                { 3, "التفكير/الاحساس" },
+                { 4, "الحكم علي الاشخاص/الإدراك" },
+                { 5, "حازم/مضطرب" }};
             var namedTraitPercentages = new Dictionary<string, int>();
             foreach (var entry in traitPercentages)
-            {
-                namedTraitPercentages[traitNames[entry.Key]] = entry.Value;
-            }
-
+            {namedTraitPercentages[traitNames[entry.Key]] = entry.Value;}
             // Return result
             return new TestResultDto
-            {
-                UserId = request.UserId,
+            {UserId = request.UserId,
                 PersonalityType = personalityType,
                 TraitPercentages = namedTraitPercentages
             };
         }
+
+
+
 
         private (string PersonalityType, Dictionary<int, int> TraitPercentages) CalculatePersonalityType(
             Dictionary<int, List<int>> answersByTrait)
         {
             var traitMapping = new Dictionary<int, (string Positive, string Negative)>
             {
-                { 1, ("E", "I") }, // Extraversion vs Introversion
-                { 2, ("S", "N") }, // Sensing vs Intuition
-                { 3, ("T", "F") }, // Thinking vs Feeling
-                { 4, ("J", "P") }, // Judging vs Perceiving
-                { 5, ("A", "T") }  // Assertive vs Turbulent
+                { 1, ("E", "I") }, // الانفتاح vs الانطوائيه
+                { 2, ("S", "N") }, // الفهم vs الحدس
+                { 3, ("T", "F") }, // التفكير vs الاحساس
+                { 4, ("J", "P") }, // الحكم علي الاشخاص vs الإدراك
+                { 5, ("A", "T") }  // حازم vs مضطرب
             };
 
             string personalityType = "";
