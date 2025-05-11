@@ -6,4 +6,5 @@ namespace Mind_Map.Models.ChatBot
         public int UserId { get; set; }
         public string UserMessage { get; set; }
     }
+
 }

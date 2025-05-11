@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mind_Map.Models;
 
@@ -11,9 +12,11 @@ using Mind_Map.Models;
 namespace Mind_Map.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250501184235_inatial")]
+    partial class inatial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,8 +114,8 @@ namespace Mind_Map.Migrations
                             Id = 1,
                             Level = "Level 1",
                             Name = "Depression",
-                            PotentialDisorder = "اضطرابات الاكتئاب",
-                            Recommendation = "تشير إجاباتك إلى احتمال وجود اكتئاب. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - الاكتئاب - النموذج المختصر واستشارة أخصائي صحة نفسية.",
+                            PotentialDisorder = "Depressive Disorders",
+                            Recommendation = "Your responses suggest possible depression. Consider the PROMIS Emotional Distress—Depression—Short Form and consult a mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -120,8 +123,8 @@ namespace Mind_Map.Migrations
                             Id = 2,
                             Level = "Level 1",
                             Name = "Anger",
-                            PotentialDisorder = "مشاكل متعلقة بالغضب",
-                            Recommendation = "تشير إجاباتك إلى وجود مشاكل محتملة في الغضب. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - الغضب - النموذج المختصر واستشارة أخصائي صحة نفسية.",
+                            PotentialDisorder = "Anger-Related Issues",
+                            Recommendation = "Your responses indicate potential anger issues. Consider the PROMIS Emotional Distress—Anger—Short Form and consult a mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -129,8 +132,8 @@ namespace Mind_Map.Migrations
                             Id = 3,
                             Level = "Level 1",
                             Name = "Mania",
-                            PotentialDisorder = "اضطراب ثنائي القطب أو نوبات الهوس",
-                            Recommendation = "تشير إجاباتك إلى احتمال وجود أعراض هوسية. يُنصح باستخدام مقياس التقييم الذاتي لهوس ألتمن واستشارة أخصائي صحة نفسية.",
+                            PotentialDisorder = "Bipolar Disorder or Manic Episodes",
+                            Recommendation = "Your responses suggest possible manic symptoms. Consider the Altman Self-Rating Mania Scale and consult a mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -138,8 +141,8 @@ namespace Mind_Map.Migrations
                             Id = 4,
                             Level = "Level 1",
                             Name = "Anxiety",
-                            PotentialDisorder = "اضطرابات القلق",
-                            Recommendation = "تشير إجاباتك إلى احتمال وجود قلق. يُنصح بالنظر في نموذج PROMIS للضيق العاطفي - القلق - النموذج المختصر واستشارة أخصائي صحة نفسية.",
+                            PotentialDisorder = "Anxiety Disorders",
+                            Recommendation = "Your responses indicate possible anxiety. Consider the PROMIS Emotional Distress—Anxiety—Short Form and consult a mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -147,8 +150,8 @@ namespace Mind_Map.Migrations
                             Id = 5,
                             Level = "Level 1",
                             Name = "Somatic Symptoms",
-                            PotentialDisorder = "اضطرابات الأعراض الجسدية",
-                            Recommendation = "تشير إجاباتك إلى أعراض جسدية قد تكون مرتبطة بالتوتر. يُنصح باستخدام استبيان صحة المريض 15 (PHQ-15) واستشارة أخصائي طبي.",
+                            PotentialDisorder = "Somatic Symptom Disorders",
+                            Recommendation = "Your responses suggest physical symptoms that may be stress-related. Consider the Patient Health Questionnaire 15 (PHQ-15) and consult a medical professional.",
                             Threshold = 2
                         },
                         new
@@ -156,8 +159,8 @@ namespace Mind_Map.Migrations
                             Id = 6,
                             Level = "Level 1",
                             Name = "Suicidal Ideation",
-                            PotentialDisorder = "أفكار انتحارية",
-                            Recommendation = "عاجل: تشير إجاباتك إلى أفكار إيذاء النفس. يرجى الاتصال بأخصائي صحة نفسية أو خط الأزمة فوراً.",
+                            PotentialDisorder = "Suicidal Ideation",
+                            Recommendation = "Urgent: Your responses indicate thoughts of self-harm. Please contact a mental health professional or crisis hotline immediately.",
                             Threshold = 1
                         },
                         new
@@ -165,8 +168,8 @@ namespace Mind_Map.Migrations
                             Id = 7,
                             Level = "Level 1",
                             Name = "Psychosis",
-                            PotentialDisorder = "اضطرابات ذهانية",
-                            Recommendation = "عاجل: تشير إجاباتك إلى أعراض ذهانية محتملة. يرجى استشارة أخصائي صحة نفسية فوراً.",
+                            PotentialDisorder = "Psychotic Disorders",
+                            Recommendation = "Urgent: Your responses suggest possible psychotic symptoms. Please consult a mental health professional immediately.",
                             Threshold = 1
                         },
                         new
@@ -174,8 +177,8 @@ namespace Mind_Map.Migrations
                             Id = 8,
                             Level = "Level 1",
                             Name = "Sleep Problems",
-                            PotentialDisorder = "اضطرابات النوم",
-                            Recommendation = "تشير إجاباتك إلى صعوبات في النوم. يُنصح بالنظر في نموذج PROMIS للاضطرابات النوم - النموذج المختصر واستشارة أخصائي نوم أو أخصائي صحة نفسية.",
+                            PotentialDisorder = "Sleep Disorders",
+                            Recommendation = "Your responses indicate sleep difficulties. Consider the PROMIS—Sleep Disturbance—Short Form and consult a sleep specialist or mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -183,8 +186,8 @@ namespace Mind_Map.Migrations
                             Id = 9,
                             Level = "Level 1",
                             Name = "Memory",
-                            PotentialDisorder = "ضعف إدراكي",
-                            Recommendation = "تشير إجاباتك إلى مشاكل في الذاكرة. يُنصح باستشارة طبيب أعصاب أو أخصائي صحة نفسية لإجراء تقييم إدراكي.",
+                            PotentialDisorder = "Cognitive Impairment",
+                            Recommendation = "Your responses suggest memory issues. Consult a neurologist or mental health professional for a cognitive assessment.",
                             Threshold = 2
                         },
                         new
@@ -192,8 +195,8 @@ namespace Mind_Map.Migrations
                             Id = 10,
                             Level = "Level 1",
                             Name = "Repetitive Thoughts and Behaviors",
-                            PotentialDisorder = "اضطراب الوسواس القهري (OCD)",
-                            Recommendation = "تشير إجاباتك إلى احتمال وجود اضطراب الوسواس القهري. يُنصح باستخدام مقياس شدة فلويدا للوسواس القهري (FOCI) واستشارة أخصائي صحة نفسية.",
+                            PotentialDisorder = "Obsessive-Compulsive Disorder (OCD)",
+                            Recommendation = "Your responses suggest possible OCD. Consider the Florida Obsessive-Compulsive Inventory (FOCI) Severity Scale and consult a mental health professional.",
                             Threshold = 2
                         },
                         new
@@ -201,8 +204,8 @@ namespace Mind_Map.Migrations
                             Id = 11,
                             Level = "Level 1",
                             Name = "Dissociation",
-                            PotentialDisorder = "اضطرابات انفصام الشخصية",
-                            Recommendation = "تشير إجاباتك إلى احتمال وجود انفصال نفسي. يُنصح باستشارة أخصائي صحة نفسية لتقييم متخصص.",
+                            PotentialDisorder = "Dissociative Disorders",
+                            Recommendation = "Your responses indicate possible dissociation. Consult a mental health professional for a specialized assessment.",
                             Threshold = 2
                         },
                         new
@@ -210,8 +213,8 @@ namespace Mind_Map.Migrations
                             Id = 12,
                             Level = "Level 1",
                             Name = "Personality Functioning",
-                            PotentialDisorder = "اضطرابات الشخصية",
-                            Recommendation = "تشير إجاباتك إلى تحديات في الهوية أو العلاقات. يُنصح باستشارة أخصائي صحة نفسية لتقييم الشخصية.",
+                            PotentialDisorder = "Personality Disorders",
+                            Recommendation = "Your responses suggest challenges with identity or relationships. Consult a mental health professional for a personality assessment.",
                             Threshold = 2
                         },
                         new
@@ -219,8 +222,8 @@ namespace Mind_Map.Migrations
                             Id = 13,
                             Level = "Level 1",
                             Name = "Substance Use",
-                            PotentialDisorder = "اضطرابات تعاطي المواد",
-                            Recommendation = "تشير إجاباتك إلى احتمال سوء استخدام المواد. يُنصح باستخدام ASSIST المعدل من NIDA واستشارة أخصائي تعاطي المخدرات.",
+                            PotentialDisorder = "Substance Use Disorders",
+                            Recommendation = "Your responses indicate possible substance misuse. Consider the NIDA-modified ASSIST and consult a substance abuse specialist.",
                             Threshold = 1
                         },
                         new
@@ -228,8 +231,8 @@ namespace Mind_Map.Migrations
                             Id = 14,
                             Level = "Level 2",
                             Name = "Anxiety",
-                            PotentialDisorder = "اضطرابات القلق",
-                            Recommendation = "تشير إجاباتك إلى أعراض قلق كبيرة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.",
+                            PotentialDisorder = "Anxiety Disorders",
+                            Recommendation = "Your responses indicate significant anxiety symptoms. Consult a mental health professional for further evaluation.",
                             Threshold = 60
                         },
                         new
@@ -237,8 +240,8 @@ namespace Mind_Map.Migrations
                             Id = 15,
                             Level = "Level 2",
                             Name = "Mania",
-                            PotentialDisorder = "اضطراب ثنائي القطب أو نوبات الهوس",
-                            Recommendation = "تشير إجاباتك إلى احتمال عالي لأعراض الهوس. يُنصح باستشارة أخصائي صحة نفسية فوراً.",
+                            PotentialDisorder = "Bipolar Disorder or Manic Episodes",
+                            Recommendation = "Your responses suggest a high probability of manic symptoms. Consult a mental health professional immediately.",
                             Threshold = 6
                         },
                         new
@@ -246,8 +249,8 @@ namespace Mind_Map.Migrations
                             Id = 16,
                             Level = "Level 2",
                             Name = "Repetitive Thoughts and Behaviors",
-                            PotentialDisorder = "اضطراب الوسواس القهري (OCD)",
-                            Recommendation = "تشير إجاباتك إلى أعراض وسواس قهري كبيرة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.",
+                            PotentialDisorder = "Obsessive-Compulsive Disorder (OCD)",
+                            Recommendation = "Your responses suggest significant OCD symptoms. Consult a mental health professional for further evaluation.",
                             Threshold = 8
                         },
                         new
@@ -255,8 +258,8 @@ namespace Mind_Map.Migrations
                             Id = 17,
                             Level = "Level 2",
                             Name = "PTSD",
-                            PotentialDisorder = "اضطراب ما بعد الصدمة",
-                            Recommendation = "تشير إجاباتك إلى أعراض كبيرة لاضطراب ما بعد الصدمة. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.",
+                            PotentialDisorder = "Post-Traumatic Stress Disorder",
+                            Recommendation = "Your responses indicate significant PTSD symptoms. Consult a mental health professional for further evaluation.",
                             Threshold = 33
                         },
                         new
@@ -264,8 +267,8 @@ namespace Mind_Map.Migrations
                             Id = 18,
                             Level = "Level 2",
                             Name = "Psychosis",
-                            PotentialDisorder = "اضطرابات ذهانية",
-                            Recommendation = "تشير إجاباتك إلى أعراض ذهانية محتملة. يُنصح باستشارة أخصائي صحة نفسية فوراً.",
+                            PotentialDisorder = "Psychotic Disorders",
+                            Recommendation = "Your responses suggest possible psychotic symptoms. Consult a mental health professional immediately.",
                             Threshold = 2
                         },
                         new
@@ -273,8 +276,8 @@ namespace Mind_Map.Migrations
                             Id = 19,
                             Level = "Level 2",
                             Name = "ADHD",
-                            PotentialDisorder = "اضطراب نقص الانتباه مع فرط النشاط",
-                            Recommendation = "تشير إجاباتك إلى أعراض محتملة لاضطراب نقص الانتباه مع فرط النشاط. يُنصح باستشارة أخصائي صحة نفسية لمزيد من التقييم.",
+                            PotentialDisorder = "Attention-Deficit/Hyperactivity Disorder",
+                            Recommendation = "Your responses suggest possible ADHD symptoms. Consult a mental health professional for further evaluation.",
                             Threshold = 4
                         });
                 });
@@ -305,517 +308,517 @@ namespace Mind_Map.Migrations
                         {
                             Id = 1,
                             DomainId = 1,
-                            Text = "قلة الاهتمام أو المتعة في القيام بالأشياء؟"
+                            Text = "Little interest or pleasure in doing things?"
                         },
                         new
                         {
                             Id = 2,
                             DomainId = 1,
-                            Text = "الشعور بالحزن أو الاكتئاب أو اليأس؟"
+                            Text = "Feeling down, depressed, or hopeless?"
                         },
                         new
                         {
                             Id = 3,
                             DomainId = 2,
-                            Text = "الشعور بمزيد من التهيج أو الغضب أكثر من المعتاد؟"
+                            Text = "Feeling more irritated, grouchy, or angry than usual?"
                         },
                         new
                         {
                             Id = 4,
                             DomainId = 3,
-                            Text = "النوم أقل من المعتاد، ولكن لا تزال تملك الكثير من الطاقة؟"
+                            Text = "Sleeping less than usual, but still have a lot of energy?"
                         },
                         new
                         {
                             Id = 5,
                             DomainId = 3,
-                            Text = "بدء المزيد من المشاريع من المعتاد أو القيام بأشياء أكثر خطورة من المعتاد؟"
+                            Text = "Starting lots more projects than usual or doing more risky things than usual?"
                         },
                         new
                         {
                             Id = 6,
                             DomainId = 4,
-                            Text = "الشعور بالتوتر أو القلق أو الخوف أو القلق أو التوتر؟"
+                            Text = "Feeling nervous, anxious, frightened, worried, or on edge?"
                         },
                         new
                         {
                             Id = 7,
                             DomainId = 4,
-                            Text = "الشعور بنوبات هلع أو الخوف؟"
+                            Text = "Feeling panic or being frightened?"
                         },
                         new
                         {
                             Id = 8,
                             DomainId = 4,
-                            Text = "تجنب المواقف التي تجعلك تشعر بالقلق؟"
+                            Text = "Avoiding situations that make you anxious?"
                         },
                         new
                         {
                             Id = 9,
                             DomainId = 5,
-                            Text = "آلام وأوجاع غير مفسرة (مثل الرأس، الظهر، المفاصل، البطن، الساقين)؟"
+                            Text = "Unexplained aches and pains (e.g., head, back, joints, abdomen, legs)?"
                         },
                         new
                         {
                             Id = 10,
                             DomainId = 5,
-                            Text = "الشعور بأن أمراضك لا تؤخذ على محمل الجد بما فيه الكفاية؟"
+                            Text = "Feeling that your illnesses are not being taken seriously enough?"
                         },
                         new
                         {
                             Id = 11,
                             DomainId = 6,
-                            Text = "أفكار عن إيذاء نفسك؟"
+                            Text = "Thoughts of actually hurting yourself?"
                         },
                         new
                         {
                             Id = 12,
                             DomainId = 7,
-                            Text = "سماع أشياء لا يستطيع الآخرون سماعها، مثل الأصوات حتى عندما لا يكون هناك أحد؟"
+                            Text = "Hearing things other people couldn’t hear, such as voices even when no one was around?"
                         },
                         new
                         {
                             Id = 13,
                             DomainId = 7,
-                            Text = "الشعور بأن شخصاً ما يمكنه سماع أفكارك، أو أنك تستطيع سماع ما يفكر به شخص آخر؟"
+                            Text = "Feeling that someone could hear your thoughts, or that you could hear what another person was thinking?"
                         },
                         new
                         {
                             Id = 14,
                             DomainId = 8,
-                            Text = "مشاكل في النوم أثرت على جودة نومك بشكل عام؟"
+                            Text = "Problems with sleep that affected your sleep quality over all?"
                         },
                         new
                         {
                             Id = 15,
                             DomainId = 9,
-                            Text = "مشاكل في الذاكرة (مثل تعلم معلومات جديدة) أو في المكان (مثل إيجاد طريقك إلى المنزل)؟"
+                            Text = "Problems with memory (e.g., learning new information) or with location (e.g., finding your way home)?"
                         },
                         new
                         {
                             Id = 16,
                             DomainId = 10,
-                            Text = "أفكار أو رغبات أو صور غير سارة تدخل ذهنك مرارًا وتكرارًا؟"
+                            Text = "Unpleasant thoughts, urges, or images that repeatedly enter your mind?"
                         },
                         new
                         {
                             Id = 17,
                             DomainId = 10,
-                            Text = "الشعور بأنك مدفوع لأداء سلوكيات أو أعمال ذهنية معينة مرارًا وتكرارًا؟"
+                            Text = "Feeling driven to perform certain behaviors or mental acts over and over again?"
                         },
                         new
                         {
                             Id = 18,
                             DomainId = 11,
-                            Text = "الشعور بالانفصال أو البعد عن نفسك، جسدك، محيطك المادي، أو ذكرياتك؟"
+                            Text = "Feeling detached or distant from yourself, your body, your physical surroundings, or your memories?"
                         },
                         new
                         {
                             Id = 19,
                             DomainId = 12,
-                            Text = "عدم معرفة من أنت حقًا أو ما تريد من الحياة؟"
+                            Text = "Not knowing who you really are or what you want out of life?"
                         },
                         new
                         {
                             Id = 20,
                             DomainId = 12,
-                            Text = "عدم الشعور بالقرب من الآخرين أو الاستمتاع بعلاقاتك معهم؟"
+                            Text = "Not feeling close to other people or enjoying your relationships with them?"
                         },
                         new
                         {
                             Id = 21,
                             DomainId = 13,
-                            Text = "شرب 4 مشروبات كحولية على الأقل في يوم واحد؟"
+                            Text = "Drinking at least 4 drinks of any kind of alcohol in a single day?"
                         },
                         new
                         {
                             Id = 22,
                             DomainId = 13,
-                            Text = "تدخين أي سجائر أو سيجار أو غليون، أو استخدام السعوط أو مضغ التبغ؟"
+                            Text = "Smoking any cigarettes, a cigar, or pipe, or using snuff or chewing tobacco?"
                         },
                         new
                         {
                             Id = 23,
                             DomainId = 13,
-                            Text = "استخدام أي من الأدوية التالية بمفردك، أي بدون وصفة طبية، بجرعات أكبر أو لفترة أطول من الموصوفة [مثل مسكنات الألم (مثل فيكودين)، المنشطات (مثل ريتالين أو أدرال)، المهدئات أو المهدئات (مثل حبوب النوم أو فاليم)، أو المخدرات مثل الماريجوانا، الكوكايين أو الكراك، مخدرات النوادي (مثل الإكستاسي)، الهلوسة (مثل LSD)، الهيروين، الاستنشاق أو المذيبات (مثل الغراء)، أو الميثامفيتامين (مثل السريع)]؟"
+                            Text = "Using any of the following medicines ON YOUR OWN, that is, without a doctor’s prescription, in greater amounts or longer than prescribed [e.g., painkillers (like Vicodin), stimulants (like Ritalin or Adderall), sedatives or tranquilizers (like sleeping pills or Valium), or drugs like marijuana, cocaine or crack, club drugs (like ecstasy), hallucinogens (like LSD), heroin, inhalants or solvents (like glue), or methamphetamine (like speed)]?"
                         },
                         new
                         {
                             Id = 24,
                             DomainId = 14,
-                            Text = "شعرت بالخوف."
+                            Text = "I felt fearful."
                         },
                         new
                         {
                             Id = 25,
                             DomainId = 14,
-                            Text = "شعرت بالقلق."
+                            Text = "I felt anxious."
                         },
                         new
                         {
                             Id = 26,
                             DomainId = 14,
-                            Text = "شعرت بالهم."
+                            Text = "I felt worried."
                         },
                         new
                         {
                             Id = 27,
                             DomainId = 14,
-                            Text = "وجدت صعوبة في التركيز على أي شيء غير قلقي."
+                            Text = "I found it hard to focus on anything other than my anxiety."
                         },
                         new
                         {
                             Id = 28,
                             DomainId = 14,
-                            Text = "شعرت بالتوتر."
+                            Text = "I felt nervous."
                         },
                         new
                         {
                             Id = 29,
                             DomainId = 14,
-                            Text = "شعرت بعدم الارتياح."
+                            Text = "I felt uneasy."
                         },
                         new
                         {
                             Id = 30,
                             DomainId = 14,
-                            Text = "شعرت بالتوتر الشديد."
+                            Text = "I felt tense."
                         },
                         new
                         {
                             Id = 31,
                             DomainId = 15,
-                            Text = "الشعور بسعادة أو بهجة أكثر من المعتاد."
+                            Text = "Feel happier or more cheerful than usual."
                         },
                         new
                         {
                             Id = 32,
                             DomainId = 15,
-                            Text = "الشعور بثقة بالنفس أكثر من المعتاد."
+                            Text = "Feel more self-confident than usual."
                         },
                         new
                         {
                             Id = 33,
                             DomainId = 15,
-                            Text = "الحاجة إلى نوم أقل من المعتاد."
+                            Text = "Need less sleep than usual."
                         },
                         new
                         {
                             Id = 34,
                             DomainId = 15,
-                            Text = "التحدث أكثر من المعتاد."
+                            Text = "Talk more than usual."
                         },
                         new
                         {
                             Id = 35,
                             DomainId = 15,
-                            Text = "أن تكون أكثر نشاطاً (اجتماعياً، جنسياً، في العمل، المنزل، أو المدرسة) من المعتاد."
+                            Text = "Been more active (either socially, sexually, at work, home, or school) than usual."
                         },
                         new
                         {
                             Id = 36,
                             DomainId = 16,
-                            Text = "كم من الوقت يشغلك في المتوسط هذه الأفكار أو السلوكيات يومياً؟"
+                            Text = "On average, how much time is occupied by these thoughts or behaviors each day?"
                         },
                         new
                         {
                             Id = 37,
                             DomainId = 16,
-                            Text = "ما مدى الضيق الذي تسببه لك هذه الأفكار أو السلوكيات؟"
+                            Text = "How much distress do these thoughts or behaviors cause you?"
                         },
                         new
                         {
                             Id = 38,
                             DomainId = 16,
-                            Text = "ما مدى صعوبة التحكم في هذه الأفكار أو السلوكيات؟"
+                            Text = "How hard is it for you to control these thoughts or behaviors?"
                         },
                         new
                         {
                             Id = 39,
                             DomainId = 16,
-                            Text = "ما مدى تسبب هذه الأفكار أو السلوكيات في تجنبك القيام بأي شيء، أو الذهاب إلى أي مكان، أو التواجد مع أي شخص؟"
+                            Text = "How much do these thoughts or behaviors cause you to avoid doing anything, going anyplace, or being with anyone?"
                         },
                         new
                         {
                             Id = 40,
                             DomainId = 16,
-                            Text = "ما مدى تأثير هذه الأفكار أو السلوكيات على دراستك أو عملك أو حياتك الاجتماعية أو العائلية؟"
+                            Text = "How much do these thoughts or behaviors interfere with school, work, or your social or family life?"
                         },
                         new
                         {
                             Id = 41,
                             DomainId = 17,
-                            Text = "ذكريات متكررة ومزعجة وغير مرغوب فيها للتجربة المجهدة؟"
+                            Text = "Repeated, disturbing, and unwanted memories of the stressful experience?"
                         },
                         new
                         {
                             Id = 42,
                             DomainId = 17,
-                            Text = "أحلام متكررة ومزعجة عن التجربة المجهدة؟"
+                            Text = "Repeated, disturbing dreams of the stressful experience?"
                         },
                         new
                         {
                             Id = 43,
                             DomainId = 17,
-                            Text = "الشعور فجأة أو التصرف كما لو أن التجربة المجهدة تحدث مرة أخرى (كما لو كنت تعيشها فعلاً مرة أخرى)؟"
+                            Text = "Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were actually back there reliving it)?"
                         },
                         new
                         {
                             Id = 44,
                             DomainId = 17,
-                            Text = "الشعور بالانزعاج الشديد عندما يذكرك شيء بالتجربة المجهدة؟"
+                            Text = "Feeling very upset when something reminded you of the stressful experience?"
                         },
                         new
                         {
                             Id = 45,
                             DomainId = 17,
-                            Text = "وجود ردود فعل جسدية قوية عندما يذكرك شيء بالتجربة المجهدة (مثل خفقان القلب، صعوبة في التنفس، التعرق)؟"
+                            Text = "Having strong physical reactions when something reminded you of the stressful experience (for example, heart pounding, trouble breathing, sweating)?"
                         },
                         new
                         {
                             Id = 46,
                             DomainId = 17,
-                            Text = "تجنب الذكريات أو الأفكار أو المشاعر المتعلقة بالتجربة المجهدة؟"
+                            Text = "Avoiding memories, thoughts, or feelings related to the stressful experience?"
                         },
                         new
                         {
                             Id = 47,
                             DomainId = 17,
-                            Text = "تجنب المثيرات الخارجية التي تذكرك بالتجربة المجهدة (مثل الأشخاص، الأماكن، المحادثات، الأنشطة، الأشياء، أو المواقف)؟"
+                            Text = "Avoiding external reminders of the stressful experience (for example, people, places, conversations, activities, objects, or situations)?"
                         },
                         new
                         {
                             Id = 48,
                             DomainId = 17,
-                            Text = "صعوبة في تذكر أجزاء مهمة من التجربة المجهدة؟"
+                            Text = "Trouble remembering important parts of the stressful experience?"
                         },
                         new
                         {
                             Id = 49,
                             DomainId = 17,
-                            Text = "وجود معتقدات سلبية قوية عن نفسك أو الآخرين أو العالم (مثل أفكار: أنا سيء، هناك شيء خطير خاطئ بي، لا يمكن الوثوق بأحد، العالم خطير تماماً)؟"
+                            Text = "Having strong negative beliefs about yourself, other people, or the world (for example, having thoughts such as: I am bad, there is something seriously wrong with me, no one can be trusted, the world is completely dangerous)?"
                         },
                         new
                         {
                             Id = 50,
                             DomainId = 17,
-                            Text = "لوم نفسك أو شخص آخر على التجربة المجهدة أو ما حدث بعدها؟"
+                            Text = "Blaming yourself or someone else for the stressful experience or what happened after it?"
                         },
                         new
                         {
                             Id = 51,
                             DomainId = 17,
-                            Text = "وجود مشاعر سلبية قوية مثل الخوف، الرعب، الغضب، الذنب، أو الخجل؟"
+                            Text = "Having strong negative feelings such as fear, horror, anger, guilt, or shame?"
                         },
                         new
                         {
                             Id = 52,
                             DomainId = 17,
-                            Text = "فقدان الاهتمام بالأنشطة التي كنت تستمتع بها؟"
+                            Text = "Loss of interest in activities that you used to enjoy?"
                         },
                         new
                         {
                             Id = 53,
                             DomainId = 17,
-                            Text = "الشعور بالبعد أو الانفصال عن الآخرين؟"
+                            Text = "Feeling distant or cut off from other people?"
                         },
                         new
                         {
                             Id = 54,
                             DomainId = 17,
-                            Text = "صعوبة في تجربة المشاعر الإيجابية (مثل عدم القدرة على الشعور بالسعادة أو الحب تجاه الأشخاص المقربين)؟"
+                            Text = "Trouble experiencing positive feelings (for example, being unable to feel happiness or have loving feelings for people close to you)?"
                         },
                         new
                         {
                             Id = 55,
                             DomainId = 17,
-                            Text = "سلوك سريع الغضب، نوبات غضب، أو التصرف بعدوانية؟"
+                            Text = "Irritable behavior, angry outbursts, or acting aggressively?"
                         },
                         new
                         {
                             Id = 56,
                             DomainId = 17,
-                            Text = "المخاطرة المفرطة أو القيام بأشياء قد تسبب لك الأذى؟"
+                            Text = "Taking too many risks or doing things that could cause you harm?"
                         },
                         new
                         {
                             Id = 57,
                             DomainId = 17,
-                            Text = "كونك 'متيقظاً جداً' أو مراقباً أو في حالة حذر؟"
+                            Text = "Being 'superalert' or watchful or on guard?"
                         },
                         new
                         {
                             Id = 58,
                             DomainId = 17,
-                            Text = "الشعور بالتوتر أو القفز بسهولة؟"
+                            Text = "Feeling jumpy or easily startled?"
                         },
                         new
                         {
                             Id = 59,
                             DomainId = 17,
-                            Text = "صعوبة في التركيز؟"
+                            Text = "Having difficulty concentrating?"
                         },
                         new
                         {
                             Id = 60,
                             DomainId = 17,
-                            Text = "صعوبة في النوم أو البقاء نائماً؟"
+                            Text = "Trouble falling or staying asleep?"
                         },
                         new
                         {
                             Id = 61,
                             DomainId = 18,
-                            Text = "الهلاوس"
+                            Text = "Hallucinations"
                         },
                         new
                         {
                             Id = 62,
                             DomainId = 18,
-                            Text = "الأوهام"
+                            Text = "Delusions"
                         },
                         new
                         {
                             Id = 63,
                             DomainId = 18,
-                            Text = "الكلام غير المنظم"
+                            Text = "Disorganized speech"
                         },
                         new
                         {
                             Id = 64,
                             DomainId = 18,
-                            Text = "السلوك النفسي الحركي الشاذ"
+                            Text = "Abnormal psychomotor behavior"
                         },
                         new
                         {
                             Id = 65,
                             DomainId = 18,
-                            Text = "الأعراض السلبية (تعبير عاطفي محدود أو انعدام الدافع)"
+                            Text = "Negative symptoms (restricted emotional expression or avolition)"
                         },
                         new
                         {
                             Id = 66,
                             DomainId = 18,
-                            Text = "الاضطراب المعرفي"
+                            Text = "Impaired cognition"
                         },
                         new
                         {
                             Id = 67,
                             DomainId = 18,
-                            Text = "الاكتئاب"
+                            Text = "Depression"
                         },
                         new
                         {
                             Id = 68,
                             DomainId = 18,
-                            Text = "الجنون"
+                            Text = "Mania"
                         },
                         new
                         {
                             Id = 69,
                             DomainId = 19,
-                            Text = "كم مرة تواجه صعوبة في إنهاء التفاصيل النهائية لمشروع، بعد أن يتم إنجاز الأجزاء الصعبة؟"
+                            Text = "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?"
                         },
                         new
                         {
                             Id = 70,
                             DomainId = 19,
-                            Text = "كم مرة تواجه صعوبة في ترتيب الأشياء عندما يتعين عليك أداء مهمة تتطلب التنظيم؟"
+                            Text = "How often do you have difficulty getting things in order when you have to do a task that requires organization?"
                         },
                         new
                         {
                             Id = 71,
                             DomainId = 19,
-                            Text = "كم مرة تواجه صعوبة في تذكر المواعيد أو الالتزامات؟"
+                            Text = "How often do you have problems remembering appointments or obligations?"
                         },
                         new
                         {
                             Id = 72,
                             DomainId = 19,
-                            Text = "عندما يكون لديك مهمة تتطلب الكثير من التفكير، كم مرة تتجنب أو تؤجل البدء بها؟"
+                            Text = "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?"
                         },
                         new
                         {
                             Id = 73,
                             DomainId = 19,
-                            Text = "كم مرة تتحرك أو تزعج يديك أو قدميك عندما يتعين عليك الجلوس لفترة طويلة؟"
+                            Text = "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?"
                         },
                         new
                         {
                             Id = 74,
                             DomainId = 19,
-                            Text = "كم مرة تشعر بالنشاط المفرط وترغب في القيام بالأشياء، وكأنك مدفوع بمحرك؟"
+                            Text = "How often do you feel overly active and compelled to do things, like you were driven by a motor?"
                         },
                         new
                         {
                             Id = 75,
                             DomainId = 19,
-                            Text = "كم مرة ترتكب أخطاء غير مبالية عندما يتعين عليك العمل على مشروع ممل أو صعب؟"
+                            Text = "How often do you make careless mistakes when you have to work on a boring or difficult project?"
                         },
                         new
                         {
                             Id = 76,
                             DomainId = 19,
-                            Text = "كم مرة تجد صعوبة في الحفاظ على انتباهك عندما تقوم بعمل ممل أو متكرر؟"
+                            Text = "How often do you have difficulty keeping your attention when you are doing boring or repetitive work?"
                         },
                         new
                         {
                             Id = 77,
                             DomainId = 19,
-                            Text = "كم مرة تجد صعوبة في التركيز على ما يقوله الناس لك، حتى عندما يتحدثون إليك مباشرة؟"
+                            Text = "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?"
                         },
                         new
                         {
                             Id = 78,
                             DomainId = 19,
-                            Text = "كم مرة تضع أو تجد صعوبة في العثور على الأشياء في المنزل أو في العمل؟"
+                            Text = "How often do you misplace or have difficulty finding things at home or at work?"
                         },
                         new
                         {
                             Id = 79,
                             DomainId = 19,
-                            Text = "كم مرة يتم تشتيتك بسبب النشاط أو الضوضاء من حولك؟"
+                            Text = "How often are you distracted by activity or noise around you?"
                         },
                         new
                         {
                             Id = 80,
                             DomainId = 19,
-                            Text = "كم مرة تغادر مقعدك في الاجتماعات أو في المواقف التي يُتوقع منك البقاء جالسًا فيها؟"
+                            Text = "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?"
                         },
                         new
                         {
                             Id = 81,
                             DomainId = 19,
-                            Text = "كم مرة تشعر بالقلق أو التململ؟"
+                            Text = "How often do you feel restless or fidgety?"
                         },
                         new
                         {
                             Id = 82,
                             DomainId = 19,
-                            Text = "كم مرة تجد صعوبة في الاسترخاء عندما يكون لديك وقت لنفسك؟"
+                            Text = "How often do you have difficulty unwinding and relaxing when you have time to yourself?"
                         },
                         new
                         {
                             Id = 83,
                             DomainId = 19,
-                            Text = "كم مرة تجد نفسك تتحدث كثيرًا عندما تكون في مواقف اجتماعية؟"
+                            Text = "How often do you find yourself talking too much when you are in social situations?"
                         },
                         new
                         {
                             Id = 84,
                             DomainId = 19,
-                            Text = "عندما تكون في محادثة، كم مرة تجد نفسك تكمل جمل الأشخاص الذين تتحدث معهم قبل أن يتمكنوا من إتمامها بأنفسهم؟"
+                            Text = "When you're in a conversation, how often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?"
                         },
                         new
                         {
                             Id = 85,
                             DomainId = 19,
-                            Text = "كم مرة تجد صعوبة في الانتظار لدورك في المواقف التي يتطلب فيها أخذ الدور؟"
+                            Text = "How often do you have difficulty waiting your turn in situations when turn taking is required?"
                         },
                         new
                         {
                             Id = 86,
                             DomainId = 19,
-                            Text = "كم مرة تقاطع الآخرين عندما يكونون مشغولين؟"
+                            Text = "How often do you interrupt others when they are busy?"
                         });
                 });
 
@@ -847,3010 +850,3010 @@ namespace Mind_Map.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 1,
                             Score = 0
                         },
                         new
                         {
                             Id = 2,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 1,
                             Score = 1
                         },
                         new
                         {
                             Id = 3,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 1,
                             Score = 2
                         },
                         new
                         {
                             Id = 4,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 1,
                             Score = 3
                         },
                         new
                         {
                             Id = 5,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 1,
                             Score = 4
                         },
                         new
                         {
                             Id = 6,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 2,
                             Score = 0
                         },
                         new
                         {
                             Id = 7,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 2,
                             Score = 1
                         },
                         new
                         {
                             Id = 8,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 2,
                             Score = 2
                         },
                         new
                         {
                             Id = 9,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 2,
                             Score = 3
                         },
                         new
                         {
                             Id = 10,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 2,
                             Score = 4
                         },
                         new
                         {
                             Id = 11,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 3,
                             Score = 0
                         },
                         new
                         {
                             Id = 12,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 3,
                             Score = 1
                         },
                         new
                         {
                             Id = 13,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 3,
                             Score = 2
                         },
                         new
                         {
                             Id = 14,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 3,
                             Score = 3
                         },
                         new
                         {
                             Id = 15,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 3,
                             Score = 4
                         },
                         new
                         {
                             Id = 16,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 4,
                             Score = 0
                         },
                         new
                         {
                             Id = 17,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 4,
                             Score = 1
                         },
                         new
                         {
                             Id = 18,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 4,
                             Score = 2
                         },
                         new
                         {
                             Id = 19,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 4,
                             Score = 3
                         },
                         new
                         {
                             Id = 20,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 4,
                             Score = 4
                         },
                         new
                         {
                             Id = 21,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 5,
                             Score = 0
                         },
                         new
                         {
                             Id = 22,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 5,
                             Score = 1
                         },
                         new
                         {
                             Id = 23,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 5,
                             Score = 2
                         },
                         new
                         {
                             Id = 24,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 5,
                             Score = 3
                         },
                         new
                         {
                             Id = 25,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 5,
                             Score = 4
                         },
                         new
                         {
                             Id = 26,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 6,
                             Score = 0
                         },
                         new
                         {
                             Id = 27,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 6,
                             Score = 1
                         },
                         new
                         {
                             Id = 28,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 6,
                             Score = 2
                         },
                         new
                         {
                             Id = 29,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 6,
                             Score = 3
                         },
                         new
                         {
                             Id = 30,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 6,
                             Score = 4
                         },
                         new
                         {
                             Id = 31,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 7,
                             Score = 0
                         },
                         new
                         {
                             Id = 32,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 7,
                             Score = 1
                         },
                         new
                         {
                             Id = 33,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 7,
                             Score = 2
                         },
                         new
                         {
                             Id = 34,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 7,
                             Score = 3
                         },
                         new
                         {
                             Id = 35,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 7,
                             Score = 4
                         },
                         new
                         {
                             Id = 36,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 8,
                             Score = 0
                         },
                         new
                         {
                             Id = 37,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 8,
                             Score = 1
                         },
                         new
                         {
                             Id = 38,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 8,
                             Score = 2
                         },
                         new
                         {
                             Id = 39,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 8,
                             Score = 3
                         },
                         new
                         {
                             Id = 40,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 8,
                             Score = 4
                         },
                         new
                         {
                             Id = 41,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 9,
                             Score = 0
                         },
                         new
                         {
                             Id = 42,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 9,
                             Score = 1
                         },
                         new
                         {
                             Id = 43,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 9,
                             Score = 2
                         },
                         new
                         {
                             Id = 44,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 9,
                             Score = 3
                         },
                         new
                         {
                             Id = 45,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 9,
                             Score = 4
                         },
                         new
                         {
                             Id = 46,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 10,
                             Score = 0
                         },
                         new
                         {
                             Id = 47,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 10,
                             Score = 1
                         },
                         new
                         {
                             Id = 48,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 10,
                             Score = 2
                         },
                         new
                         {
                             Id = 49,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 10,
                             Score = 3
                         },
                         new
                         {
                             Id = 50,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 10,
                             Score = 4
                         },
                         new
                         {
                             Id = 51,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 11,
                             Score = 0
                         },
                         new
                         {
                             Id = 52,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 11,
                             Score = 1
                         },
                         new
                         {
                             Id = 53,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 11,
                             Score = 2
                         },
                         new
                         {
                             Id = 54,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 11,
                             Score = 3
                         },
                         new
                         {
                             Id = 55,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 11,
                             Score = 4
                         },
                         new
                         {
                             Id = 56,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 12,
                             Score = 0
                         },
                         new
                         {
                             Id = 57,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 12,
                             Score = 1
                         },
                         new
                         {
                             Id = 58,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 12,
                             Score = 2
                         },
                         new
                         {
                             Id = 59,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 12,
                             Score = 3
                         },
                         new
                         {
                             Id = 60,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 12,
                             Score = 4
                         },
                         new
                         {
                             Id = 61,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 13,
                             Score = 0
                         },
                         new
                         {
                             Id = 62,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 13,
                             Score = 1
                         },
                         new
                         {
                             Id = 63,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 13,
                             Score = 2
                         },
                         new
                         {
                             Id = 64,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 13,
                             Score = 3
                         },
                         new
                         {
                             Id = 65,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 13,
                             Score = 4
                         },
                         new
                         {
                             Id = 66,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 14,
                             Score = 0
                         },
                         new
                         {
                             Id = 67,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 14,
                             Score = 1
                         },
                         new
                         {
                             Id = 68,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 14,
                             Score = 2
                         },
                         new
                         {
                             Id = 69,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 14,
                             Score = 3
                         },
                         new
                         {
                             Id = 70,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 14,
                             Score = 4
                         },
                         new
                         {
                             Id = 71,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 15,
                             Score = 0
                         },
                         new
                         {
                             Id = 72,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 15,
                             Score = 1
                         },
                         new
                         {
                             Id = 73,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 15,
                             Score = 2
                         },
                         new
                         {
                             Id = 74,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 15,
                             Score = 3
                         },
                         new
                         {
                             Id = 75,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 15,
                             Score = 4
                         },
                         new
                         {
                             Id = 76,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 16,
                             Score = 0
                         },
                         new
                         {
                             Id = 77,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 16,
                             Score = 1
                         },
                         new
                         {
                             Id = 78,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 16,
                             Score = 2
                         },
                         new
                         {
                             Id = 79,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 16,
                             Score = 3
                         },
                         new
                         {
                             Id = 80,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 16,
                             Score = 4
                         },
                         new
                         {
                             Id = 81,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 17,
                             Score = 0
                         },
                         new
                         {
                             Id = 82,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 17,
                             Score = 1
                         },
                         new
                         {
                             Id = 83,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 17,
                             Score = 2
                         },
                         new
                         {
                             Id = 84,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 17,
                             Score = 3
                         },
                         new
                         {
                             Id = 85,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 17,
                             Score = 4
                         },
                         new
                         {
                             Id = 86,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 18,
                             Score = 0
                         },
                         new
                         {
                             Id = 87,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 18,
                             Score = 1
                         },
                         new
                         {
                             Id = 88,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 18,
                             Score = 2
                         },
                         new
                         {
                             Id = 89,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 18,
                             Score = 3
                         },
                         new
                         {
                             Id = 90,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 18,
                             Score = 4
                         },
                         new
                         {
                             Id = 91,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 19,
                             Score = 0
                         },
                         new
                         {
                             Id = 92,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 19,
                             Score = 1
                         },
                         new
                         {
                             Id = 93,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 19,
                             Score = 2
                         },
                         new
                         {
                             Id = 94,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 19,
                             Score = 3
                         },
                         new
                         {
                             Id = 95,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 19,
                             Score = 4
                         },
                         new
                         {
                             Id = 96,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 20,
                             Score = 0
                         },
                         new
                         {
                             Id = 97,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 20,
                             Score = 1
                         },
                         new
                         {
                             Id = 98,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 20,
                             Score = 2
                         },
                         new
                         {
                             Id = 99,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 20,
                             Score = 3
                         },
                         new
                         {
                             Id = 100,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 20,
                             Score = 4
                         },
                         new
                         {
                             Id = 101,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 21,
                             Score = 0
                         },
                         new
                         {
                             Id = 102,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 21,
                             Score = 1
                         },
                         new
                         {
                             Id = 103,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 21,
                             Score = 2
                         },
                         new
                         {
                             Id = 104,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 21,
                             Score = 3
                         },
                         new
                         {
                             Id = 105,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 21,
                             Score = 4
                         },
                         new
                         {
                             Id = 106,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 22,
                             Score = 0
                         },
                         new
                         {
                             Id = 107,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 22,
                             Score = 1
                         },
                         new
                         {
                             Id = 108,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 22,
                             Score = 2
                         },
                         new
                         {
                             Id = 109,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 22,
                             Score = 3
                         },
                         new
                         {
                             Id = 110,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 22,
                             Score = 4
                         },
                         new
                         {
                             Id = 111,
-                            Description = "لا شيء / لا على الإطلاق",
+                            Description = "None/Not at all",
                             QuestionId = 23,
                             Score = 0
                         },
                         new
                         {
                             Id = 112,
-                            Description = "طفيف / نادر، أقل من يوم أو يومين",
+                            Description = "Slight/Rare, less than a day or two",
                             QuestionId = 23,
                             Score = 1
                         },
                         new
                         {
                             Id = 113,
-                            Description = "خفيف / عدة أيام",
+                            Description = "Mild/Several days",
                             QuestionId = 23,
                             Score = 2
                         },
                         new
                         {
                             Id = 114,
-                            Description = "متوسط / أكثر من نصف الأيام",
+                            Description = "Moderate/More than half the days",
                             QuestionId = 23,
                             Score = 3
                         },
                         new
                         {
                             Id = 115,
-                            Description = "شديد / تقريباً كل يوم",
+                            Description = "Severe/Nearly every day",
                             QuestionId = 23,
                             Score = 4
                         },
                         new
                         {
                             Id = 116,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 24,
                             Score = 1
                         },
                         new
                         {
                             Id = 117,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 24,
                             Score = 2
                         },
                         new
                         {
                             Id = 118,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 24,
                             Score = 3
                         },
                         new
                         {
                             Id = 119,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 24,
                             Score = 4
                         },
                         new
                         {
                             Id = 120,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 24,
                             Score = 5
                         },
                         new
                         {
                             Id = 121,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 25,
                             Score = 1
                         },
                         new
                         {
                             Id = 122,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 25,
                             Score = 2
                         },
                         new
                         {
                             Id = 123,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 25,
                             Score = 3
                         },
                         new
                         {
                             Id = 124,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 25,
                             Score = 4
                         },
                         new
                         {
                             Id = 125,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 25,
                             Score = 5
                         },
                         new
                         {
                             Id = 126,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 26,
                             Score = 1
                         },
                         new
                         {
                             Id = 127,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 26,
                             Score = 2
                         },
                         new
                         {
                             Id = 128,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 26,
                             Score = 3
                         },
                         new
                         {
                             Id = 129,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 26,
                             Score = 4
                         },
                         new
                         {
                             Id = 130,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 26,
                             Score = 5
                         },
                         new
                         {
                             Id = 131,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 27,
                             Score = 1
                         },
                         new
                         {
                             Id = 132,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 27,
                             Score = 2
                         },
                         new
                         {
                             Id = 133,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 27,
                             Score = 3
                         },
                         new
                         {
                             Id = 134,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 27,
                             Score = 4
                         },
                         new
                         {
                             Id = 135,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 27,
                             Score = 5
                         },
                         new
                         {
                             Id = 136,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 28,
                             Score = 1
                         },
                         new
                         {
                             Id = 137,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 28,
                             Score = 2
                         },
                         new
                         {
                             Id = 138,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 28,
                             Score = 3
                         },
                         new
                         {
                             Id = 139,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 28,
                             Score = 4
                         },
                         new
                         {
                             Id = 140,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 28,
                             Score = 5
                         },
                         new
                         {
                             Id = 141,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 29,
                             Score = 1
                         },
                         new
                         {
                             Id = 142,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 29,
                             Score = 2
                         },
                         new
                         {
                             Id = 143,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 29,
                             Score = 3
                         },
                         new
                         {
                             Id = 144,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 29,
                             Score = 4
                         },
                         new
                         {
                             Id = 145,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 29,
                             Score = 5
                         },
                         new
                         {
                             Id = 146,
-                            Description = "أبداً",
+                            Description = "Never",
                             QuestionId = 30,
                             Score = 1
                         },
                         new
                         {
                             Id = 147,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 30,
                             Score = 2
                         },
                         new
                         {
                             Id = 148,
-                            Description = "أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 30,
                             Score = 3
                         },
                         new
                         {
                             Id = 149,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 30,
                             Score = 4
                         },
                         new
                         {
                             Id = 150,
-                            Description = "دائماً",
+                            Description = "Always",
                             QuestionId = 30,
                             Score = 5
                         },
                         new
                         {
                             Id = 151,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 31,
                             Score = 0
                         },
                         new
                         {
                             Id = 152,
-                            Description = "أحياناً",
+                            Description = "Occasionally",
                             QuestionId = 31,
                             Score = 1
                         },
                         new
                         {
                             Id = 153,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 31,
                             Score = 2
                         },
                         new
                         {
                             Id = 154,
-                            Description = "كثيراً",
+                            Description = "Frequently",
                             QuestionId = 31,
                             Score = 3
                         },
                         new
                         {
                             Id = 155,
-                            Description = "طوال الوقت",
+                            Description = "All the time",
                             QuestionId = 31,
                             Score = 4
                         },
                         new
                         {
                             Id = 156,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 32,
                             Score = 0
                         },
                         new
                         {
                             Id = 157,
-                            Description = "أحياناً",
+                            Description = "Occasionally",
                             QuestionId = 32,
                             Score = 1
                         },
                         new
                         {
                             Id = 158,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 32,
                             Score = 2
                         },
                         new
                         {
                             Id = 159,
-                            Description = "كثيراً",
+                            Description = "Frequently",
                             QuestionId = 32,
                             Score = 3
                         },
                         new
                         {
                             Id = 160,
-                            Description = "طوال الوقت",
+                            Description = "All the time",
                             QuestionId = 32,
                             Score = 4
                         },
                         new
                         {
                             Id = 161,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 33,
                             Score = 0
                         },
                         new
                         {
                             Id = 162,
-                            Description = "أحياناً",
+                            Description = "Occasionally",
                             QuestionId = 33,
                             Score = 1
                         },
                         new
                         {
                             Id = 163,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 33,
                             Score = 2
                         },
                         new
                         {
                             Id = 164,
-                            Description = "كثيراً",
+                            Description = "Frequently",
                             QuestionId = 33,
                             Score = 3
                         },
                         new
                         {
                             Id = 165,
-                            Description = "طوال الوقت",
+                            Description = "All the time",
                             QuestionId = 33,
                             Score = 4
                         },
                         new
                         {
                             Id = 166,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 34,
                             Score = 0
                         },
                         new
                         {
                             Id = 167,
-                            Description = "أحياناً",
+                            Description = "Occasionally",
                             QuestionId = 34,
                             Score = 1
                         },
                         new
                         {
                             Id = 168,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 34,
                             Score = 2
                         },
                         new
                         {
                             Id = 169,
-                            Description = "كثيراً",
+                            Description = "Frequently",
                             QuestionId = 34,
                             Score = 3
                         },
                         new
                         {
                             Id = 170,
-                            Description = "طوال الوقت",
+                            Description = "All the time",
                             QuestionId = 34,
                             Score = 4
                         },
                         new
                         {
                             Id = 171,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 35,
                             Score = 0
                         },
                         new
                         {
                             Id = 172,
-                            Description = "أحياناً",
+                            Description = "Occasionally",
                             QuestionId = 35,
                             Score = 1
                         },
                         new
                         {
                             Id = 173,
-                            Description = "غالباً",
+                            Description = "Often",
                             QuestionId = 35,
                             Score = 2
                         },
                         new
                         {
                             Id = 174,
-                            Description = "كثيراً",
+                            Description = "Frequently",
                             QuestionId = 35,
                             Score = 3
                         },
                         new
                         {
                             Id = 175,
-                            Description = "طوال الوقت",
+                            Description = "All the time",
                             QuestionId = 35,
                             Score = 4
                         },
                         new
                         {
                             Id = 176,
-                            Description = "لا شيء",
+                            Description = "None",
                             QuestionId = 36,
                             Score = 0
                         },
                         new
                         {
                             Id = 177,
-                            Description = "خفيف",
+                            Description = "Mild",
                             QuestionId = 36,
                             Score = 1
                         },
                         new
                         {
                             Id = 178,
-                            Description = "متوسط",
+                            Description = "Moderate",
                             QuestionId = 36,
                             Score = 2
                         },
                         new
                         {
                             Id = 179,
-                            Description = "شديد",
+                            Description = "Severe",
                             QuestionId = 36,
                             Score = 3
                         },
                         new
                         {
                             Id = 180,
-                            Description = "شديد جداً",
+                            Description = "Extreme",
                             QuestionId = 36,
                             Score = 4
                         },
                         new
                         {
                             Id = 181,
-                            Description = "لا شيء",
+                            Description = "None",
                             QuestionId = 37,
                             Score = 0
                         },
                         new
                         {
                             Id = 182,
-                            Description = "خفيف",
+                            Description = "Mild",
                             QuestionId = 37,
                             Score = 1
                         },
                         new
                         {
                             Id = 183,
-                            Description = "متوسط",
+                            Description = "Moderate",
                             QuestionId = 37,
                             Score = 2
                         },
                         new
                         {
                             Id = 184,
-                            Description = "شديد",
+                            Description = "Severe",
                             QuestionId = 37,
                             Score = 3
                         },
                         new
                         {
                             Id = 185,
-                            Description = "شديد جداً",
+                            Description = "Extreme",
                             QuestionId = 37,
                             Score = 4
                         },
                         new
                         {
                             Id = 186,
-                            Description = "لا شيء",
+                            Description = "None",
                             QuestionId = 38,
                             Score = 0
                         },
                         new
                         {
                             Id = 187,
-                            Description = "خفيف",
+                            Description = "Mild",
                             QuestionId = 38,
                             Score = 1
                         },
                         new
                         {
                             Id = 188,
-                            Description = "متوسط",
+                            Description = "Moderate",
                             QuestionId = 38,
                             Score = 2
                         },
                         new
                         {
                             Id = 189,
-                            Description = "شديد",
+                            Description = "Severe",
                             QuestionId = 38,
                             Score = 3
                         },
                         new
                         {
                             Id = 190,
-                            Description = "شديد جداً",
+                            Description = "Extreme",
                             QuestionId = 38,
                             Score = 4
                         },
                         new
                         {
                             Id = 191,
-                            Description = "لا شيء",
+                            Description = "None",
                             QuestionId = 39,
                             Score = 0
                         },
                         new
                         {
                             Id = 192,
-                            Description = "خفيف",
+                            Description = "Mild",
                             QuestionId = 39,
                             Score = 1
                         },
                         new
                         {
                             Id = 193,
-                            Description = "متوسط",
+                            Description = "Moderate",
                             QuestionId = 39,
                             Score = 2
                         },
                         new
                         {
                             Id = 194,
-                            Description = "شديد",
+                            Description = "Severe",
                             QuestionId = 39,
                             Score = 3
                         },
                         new
                         {
                             Id = 195,
-                            Description = "شديد جداً",
+                            Description = "Extreme",
                             QuestionId = 39,
                             Score = 4
                         },
                         new
                         {
                             Id = 196,
-                            Description = "لا شيء",
+                            Description = "None",
                             QuestionId = 40,
                             Score = 0
                         },
                         new
                         {
                             Id = 197,
-                            Description = "خفيف",
+                            Description = "Mild",
                             QuestionId = 40,
                             Score = 1
                         },
                         new
                         {
                             Id = 198,
-                            Description = "متوسط",
+                            Description = "Moderate",
                             QuestionId = 40,
                             Score = 2
                         },
                         new
                         {
                             Id = 199,
-                            Description = "شديد",
+                            Description = "Severe",
                             QuestionId = 40,
                             Score = 3
                         },
                         new
                         {
                             Id = 200,
-                            Description = "شديد جداً",
+                            Description = "Extreme",
                             QuestionId = 40,
                             Score = 4
                         },
                         new
                         {
                             Id = 201,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 41,
                             Score = 0
                         },
                         new
                         {
                             Id = 202,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 41,
                             Score = 1
                         },
                         new
                         {
                             Id = 203,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 41,
                             Score = 2
                         },
                         new
                         {
                             Id = 204,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 41,
                             Score = 3
                         },
                         new
                         {
                             Id = 205,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 41,
                             Score = 4
                         },
                         new
                         {
                             Id = 206,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 42,
                             Score = 0
                         },
                         new
                         {
                             Id = 207,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 42,
                             Score = 1
                         },
                         new
                         {
                             Id = 208,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 42,
                             Score = 2
                         },
                         new
                         {
                             Id = 209,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 42,
                             Score = 3
                         },
                         new
                         {
                             Id = 210,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 42,
                             Score = 4
                         },
                         new
                         {
                             Id = 211,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 43,
                             Score = 0
                         },
                         new
                         {
                             Id = 212,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 43,
                             Score = 1
                         },
                         new
                         {
                             Id = 213,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 43,
                             Score = 2
                         },
                         new
                         {
                             Id = 214,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 43,
                             Score = 3
                         },
                         new
                         {
                             Id = 215,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 43,
                             Score = 4
                         },
                         new
                         {
                             Id = 216,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 44,
                             Score = 0
                         },
                         new
                         {
                             Id = 217,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 44,
                             Score = 1
                         },
                         new
                         {
                             Id = 218,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 44,
                             Score = 2
                         },
                         new
                         {
                             Id = 219,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 44,
                             Score = 3
                         },
                         new
                         {
                             Id = 220,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 44,
                             Score = 4
                         },
                         new
                         {
                             Id = 221,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 45,
                             Score = 0
                         },
                         new
                         {
                             Id = 222,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 45,
                             Score = 1
                         },
                         new
                         {
                             Id = 223,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 45,
                             Score = 2
                         },
                         new
                         {
                             Id = 224,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 45,
                             Score = 3
                         },
                         new
                         {
                             Id = 225,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 45,
                             Score = 4
                         },
                         new
                         {
                             Id = 226,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 46,
                             Score = 0
                         },
                         new
                         {
                             Id = 227,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 46,
                             Score = 1
                         },
                         new
                         {
                             Id = 228,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 46,
                             Score = 2
                         },
                         new
                         {
                             Id = 229,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 46,
                             Score = 3
                         },
                         new
                         {
                             Id = 230,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 46,
                             Score = 4
                         },
                         new
                         {
                             Id = 231,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 47,
                             Score = 0
                         },
                         new
                         {
                             Id = 232,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 47,
                             Score = 1
                         },
                         new
                         {
                             Id = 233,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 47,
                             Score = 2
                         },
                         new
                         {
                             Id = 234,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 47,
                             Score = 3
                         },
                         new
                         {
                             Id = 235,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 47,
                             Score = 4
                         },
                         new
                         {
                             Id = 236,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 48,
                             Score = 0
                         },
                         new
                         {
                             Id = 237,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 48,
                             Score = 1
                         },
                         new
                         {
                             Id = 238,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 48,
                             Score = 2
                         },
                         new
                         {
                             Id = 239,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 48,
                             Score = 3
                         },
                         new
                         {
                             Id = 240,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 48,
                             Score = 4
                         },
                         new
                         {
                             Id = 241,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 49,
                             Score = 0
                         },
                         new
                         {
                             Id = 242,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 49,
                             Score = 1
                         },
                         new
                         {
                             Id = 243,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 49,
                             Score = 2
                         },
                         new
                         {
                             Id = 244,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 49,
                             Score = 3
                         },
                         new
                         {
                             Id = 245,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 49,
                             Score = 4
                         },
                         new
                         {
                             Id = 246,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 50,
                             Score = 0
                         },
                         new
                         {
                             Id = 247,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 50,
                             Score = 1
                         },
                         new
                         {
                             Id = 248,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 50,
                             Score = 2
                         },
                         new
                         {
                             Id = 249,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 50,
                             Score = 3
                         },
                         new
                         {
                             Id = 250,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 50,
                             Score = 4
                         },
                         new
                         {
                             Id = 251,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 51,
                             Score = 0
                         },
                         new
                         {
                             Id = 252,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 51,
                             Score = 1
                         },
                         new
                         {
                             Id = 253,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 51,
                             Score = 2
                         },
                         new
                         {
                             Id = 254,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 51,
                             Score = 3
                         },
                         new
                         {
                             Id = 255,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 51,
                             Score = 4
                         },
                         new
                         {
                             Id = 256,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 52,
                             Score = 0
                         },
                         new
                         {
                             Id = 257,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 52,
                             Score = 1
                         },
                         new
                         {
                             Id = 258,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 52,
                             Score = 2
                         },
                         new
                         {
                             Id = 259,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 52,
                             Score = 3
                         },
                         new
                         {
                             Id = 260,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 52,
                             Score = 4
                         },
                         new
                         {
                             Id = 261,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 53,
                             Score = 0
                         },
                         new
                         {
                             Id = 262,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 53,
                             Score = 1
                         },
                         new
                         {
                             Id = 263,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 53,
                             Score = 2
                         },
                         new
                         {
                             Id = 264,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 53,
                             Score = 3
                         },
                         new
                         {
                             Id = 265,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 53,
                             Score = 4
                         },
                         new
                         {
                             Id = 266,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 54,
                             Score = 0
                         },
                         new
                         {
                             Id = 267,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 54,
                             Score = 1
                         },
                         new
                         {
                             Id = 268,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 54,
                             Score = 2
                         },
                         new
                         {
                             Id = 269,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 54,
                             Score = 3
                         },
                         new
                         {
                             Id = 270,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 54,
                             Score = 4
                         },
                         new
                         {
                             Id = 271,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 55,
                             Score = 0
                         },
                         new
                         {
                             Id = 272,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 55,
                             Score = 1
                         },
                         new
                         {
                             Id = 273,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 55,
                             Score = 2
                         },
                         new
                         {
                             Id = 274,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 55,
                             Score = 3
                         },
                         new
                         {
                             Id = 275,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 55,
                             Score = 4
                         },
                         new
                         {
                             Id = 276,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 56,
                             Score = 0
                         },
                         new
                         {
                             Id = 277,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 56,
                             Score = 1
                         },
                         new
                         {
                             Id = 278,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 56,
                             Score = 2
                         },
                         new
                         {
                             Id = 279,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 56,
                             Score = 3
                         },
                         new
                         {
                             Id = 280,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 56,
                             Score = 4
                         },
                         new
                         {
                             Id = 281,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 57,
                             Score = 0
                         },
                         new
                         {
                             Id = 282,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 57,
                             Score = 1
                         },
                         new
                         {
                             Id = 283,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 57,
                             Score = 2
                         },
                         new
                         {
                             Id = 284,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 57,
                             Score = 3
                         },
                         new
                         {
                             Id = 285,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 57,
                             Score = 4
                         },
                         new
                         {
                             Id = 286,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 58,
                             Score = 0
                         },
                         new
                         {
                             Id = 287,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 58,
                             Score = 1
                         },
                         new
                         {
                             Id = 288,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 58,
                             Score = 2
                         },
                         new
                         {
                             Id = 289,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 58,
                             Score = 3
                         },
                         new
                         {
                             Id = 290,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 58,
                             Score = 4
                         },
                         new
                         {
                             Id = 291,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 59,
                             Score = 0
                         },
                         new
                         {
                             Id = 292,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 59,
                             Score = 1
                         },
                         new
                         {
                             Id = 293,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 59,
                             Score = 2
                         },
                         new
                         {
                             Id = 294,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 59,
                             Score = 3
                         },
                         new
                         {
                             Id = 295,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 59,
                             Score = 4
                         },
                         new
                         {
                             Id = 296,
-                            Description = "لا على الإطلاق",
+                            Description = "Not at all",
                             QuestionId = 60,
                             Score = 0
                         },
                         new
                         {
                             Id = 297,
-                            Description = "قليلاً",
+                            Description = "A little bit",
                             QuestionId = 60,
                             Score = 1
                         },
                         new
                         {
                             Id = 298,
-                            Description = "بشكل معتدل",
+                            Description = "Moderately",
                             QuestionId = 60,
                             Score = 2
                         },
                         new
                         {
                             Id = 299,
-                            Description = "إلى حد كبير",
+                            Description = "Quite a bit",
                             QuestionId = 60,
                             Score = 3
                         },
                         new
                         {
                             Id = 300,
-                            Description = "بشكل شديد",
+                            Description = "Extremely",
                             QuestionId = 60,
                             Score = 4
                         },
                         new
                         {
                             Id = 301,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 61,
                             Score = 0
                         },
                         new
                         {
                             Id = 302,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 61,
                             Score = 1
                         },
                         new
                         {
                             Id = 303,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 61,
                             Score = 2
                         },
                         new
                         {
                             Id = 304,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 61,
                             Score = 3
                         },
                         new
                         {
                             Id = 305,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 61,
                             Score = 4
                         },
                         new
                         {
                             Id = 306,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 62,
                             Score = 0
                         },
                         new
                         {
                             Id = 307,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 62,
                             Score = 1
                         },
                         new
                         {
                             Id = 308,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 62,
                             Score = 2
                         },
                         new
                         {
                             Id = 309,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 62,
                             Score = 3
                         },
                         new
                         {
                             Id = 310,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 62,
                             Score = 4
                         },
                         new
                         {
                             Id = 311,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 63,
                             Score = 0
                         },
                         new
                         {
                             Id = 312,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 63,
                             Score = 1
                         },
                         new
                         {
                             Id = 313,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 63,
                             Score = 2
                         },
                         new
                         {
                             Id = 314,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 63,
                             Score = 3
                         },
                         new
                         {
                             Id = 315,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 63,
                             Score = 4
                         },
                         new
                         {
                             Id = 316,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 64,
                             Score = 0
                         },
                         new
                         {
                             Id = 317,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 64,
                             Score = 1
                         },
                         new
                         {
                             Id = 318,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 64,
                             Score = 2
                         },
                         new
                         {
                             Id = 319,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 64,
                             Score = 3
                         },
                         new
                         {
                             Id = 320,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 64,
                             Score = 4
                         },
                         new
                         {
                             Id = 321,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 65,
                             Score = 0
                         },
                         new
                         {
                             Id = 322,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 65,
                             Score = 1
                         },
                         new
                         {
                             Id = 323,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 65,
                             Score = 2
                         },
                         new
                         {
                             Id = 324,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 65,
                             Score = 3
                         },
                         new
                         {
                             Id = 325,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 65,
                             Score = 4
                         },
                         new
                         {
                             Id = 326,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 66,
                             Score = 0
                         },
                         new
                         {
                             Id = 327,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 66,
                             Score = 1
                         },
                         new
                         {
                             Id = 328,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 66,
                             Score = 2
                         },
                         new
                         {
                             Id = 329,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 66,
                             Score = 3
                         },
                         new
                         {
                             Id = 330,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 66,
                             Score = 4
                         },
                         new
                         {
                             Id = 331,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 67,
                             Score = 0
                         },
                         new
                         {
                             Id = 332,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 67,
                             Score = 1
                         },
                         new
                         {
                             Id = 333,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 67,
                             Score = 2
                         },
                         new
                         {
                             Id = 334,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 67,
                             Score = 3
                         },
                         new
                         {
                             Id = 335,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 67,
                             Score = 4
                         },
                         new
                         {
                             Id = 336,
-                            Description = "غير موجود",
+                            Description = "Not present",
                             QuestionId = 68,
                             Score = 0
                         },
                         new
                         {
                             Id = 337,
-                            Description = "غير واضح",
+                            Description = "Equivocal",
                             QuestionId = 68,
                             Score = 1
                         },
                         new
                         {
                             Id = 338,
-                            Description = "موجود، ولكن خفيف",
+                            Description = "Present, but mild",
                             QuestionId = 68,
                             Score = 2
                         },
                         new
                         {
                             Id = 339,
-                            Description = "موجود ومعتدل",
+                            Description = "Present and moderate",
                             QuestionId = 68,
                             Score = 3
                         },
                         new
                         {
                             Id = 340,
-                            Description = "موجود وشديد",
+                            Description = "Present and severe",
                             QuestionId = 68,
                             Score = 4
                         },
                         new
                         {
                             Id = 341,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 69,
                             Score = 0
                         },
                         new
                         {
                             Id = 342,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 69,
                             Score = 1
                         },
                         new
                         {
                             Id = 343,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 69,
                             Score = 2
                         },
                         new
                         {
                             Id = 344,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 69,
                             Score = 3
                         },
                         new
                         {
                             Id = 345,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 69,
                             Score = 4
                         },
                         new
                         {
                             Id = 346,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 70,
                             Score = 0
                         },
                         new
                         {
                             Id = 347,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 70,
                             Score = 1
                         },
                         new
                         {
                             Id = 348,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 70,
                             Score = 2
                         },
                         new
                         {
                             Id = 349,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 70,
                             Score = 3
                         },
                         new
                         {
                             Id = 350,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 70,
                             Score = 4
                         },
                         new
                         {
                             Id = 351,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 71,
                             Score = 0
                         },
                         new
                         {
                             Id = 352,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 71,
                             Score = 1
                         },
                         new
                         {
                             Id = 353,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 71,
                             Score = 2
                         },
                         new
                         {
                             Id = 354,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 71,
                             Score = 3
                         },
                         new
                         {
                             Id = 355,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 71,
                             Score = 4
                         },
                         new
                         {
                             Id = 356,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 72,
                             Score = 0
                         },
                         new
                         {
                             Id = 357,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 72,
                             Score = 1
                         },
                         new
                         {
                             Id = 358,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 72,
                             Score = 2
                         },
                         new
                         {
                             Id = 359,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 72,
                             Score = 3
                         },
                         new
                         {
                             Id = 360,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 72,
                             Score = 4
                         },
                         new
                         {
                             Id = 361,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 73,
                             Score = 0
                         },
                         new
                         {
                             Id = 362,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 73,
                             Score = 1
                         },
                         new
                         {
                             Id = 363,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 73,
                             Score = 2
                         },
                         new
                         {
                             Id = 364,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 73,
                             Score = 3
                         },
                         new
                         {
                             Id = 365,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 73,
                             Score = 4
                         },
                         new
                         {
                             Id = 366,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 74,
                             Score = 0
                         },
                         new
                         {
                             Id = 367,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 74,
                             Score = 1
                         },
                         new
                         {
                             Id = 368,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 74,
                             Score = 2
                         },
                         new
                         {
                             Id = 369,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 74,
                             Score = 3
                         },
                         new
                         {
                             Id = 370,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 74,
                             Score = 4
                         },
                         new
                         {
                             Id = 371,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 75,
                             Score = 0
                         },
                         new
                         {
                             Id = 372,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 75,
                             Score = 1
                         },
                         new
                         {
                             Id = 373,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 75,
                             Score = 2
                         },
                         new
                         {
                             Id = 374,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 75,
                             Score = 3
                         },
                         new
                         {
                             Id = 375,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 75,
                             Score = 4
                         },
                         new
                         {
                             Id = 376,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 76,
                             Score = 0
                         },
                         new
                         {
                             Id = 377,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 76,
                             Score = 1
                         },
                         new
                         {
                             Id = 378,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 76,
                             Score = 2
                         },
                         new
                         {
                             Id = 379,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 76,
                             Score = 3
                         },
                         new
                         {
                             Id = 380,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 76,
                             Score = 4
                         },
                         new
                         {
                             Id = 381,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 77,
                             Score = 0
                         },
                         new
                         {
                             Id = 382,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 77,
                             Score = 1
                         },
                         new
                         {
                             Id = 383,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 77,
                             Score = 2
                         },
                         new
                         {
                             Id = 384,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 77,
                             Score = 3
                         },
                         new
                         {
                             Id = 385,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 77,
                             Score = 4
                         },
                         new
                         {
                             Id = 386,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 78,
                             Score = 0
                         },
                         new
                         {
                             Id = 387,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 78,
                             Score = 1
                         },
                         new
                         {
                             Id = 388,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 78,
                             Score = 2
                         },
                         new
                         {
                             Id = 389,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 78,
                             Score = 3
                         },
                         new
                         {
                             Id = 390,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 78,
                             Score = 4
                         },
                         new
                         {
                             Id = 391,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 79,
                             Score = 0
                         },
                         new
                         {
                             Id = 392,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 79,
                             Score = 1
                         },
                         new
                         {
                             Id = 393,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 79,
                             Score = 2
                         },
                         new
                         {
                             Id = 394,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 79,
                             Score = 3
                         },
                         new
                         {
                             Id = 395,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 79,
                             Score = 4
                         },
                         new
                         {
                             Id = 396,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 80,
                             Score = 0
                         },
                         new
                         {
                             Id = 397,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 80,
                             Score = 1
                         },
                         new
                         {
                             Id = 398,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 80,
                             Score = 2
                         },
                         new
                         {
                             Id = 399,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 80,
                             Score = 3
                         },
                         new
                         {
                             Id = 400,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 80,
                             Score = 4
                         },
                         new
                         {
                             Id = 401,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 81,
                             Score = 0
                         },
                         new
                         {
                             Id = 402,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 81,
                             Score = 1
                         },
                         new
                         {
                             Id = 403,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 81,
                             Score = 2
                         },
                         new
                         {
                             Id = 404,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 81,
                             Score = 3
                         },
                         new
                         {
                             Id = 405,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 81,
                             Score = 4
                         },
                         new
                         {
                             Id = 406,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 82,
                             Score = 0
                         },
                         new
                         {
                             Id = 407,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 82,
                             Score = 1
                         },
                         new
                         {
                             Id = 408,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 82,
                             Score = 2
                         },
                         new
                         {
                             Id = 409,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 82,
                             Score = 3
                         },
                         new
                         {
                             Id = 410,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 82,
                             Score = 4
                         },
                         new
                         {
                             Id = 411,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 83,
                             Score = 0
                         },
                         new
                         {
                             Id = 412,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 83,
                             Score = 1
                         },
                         new
                         {
                             Id = 413,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 83,
                             Score = 2
                         },
                         new
                         {
                             Id = 414,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 83,
                             Score = 3
                         },
                         new
                         {
                             Id = 415,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 83,
                             Score = 4
                         },
                         new
                         {
                             Id = 416,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 84,
                             Score = 0
                         },
                         new
                         {
                             Id = 417,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 84,
                             Score = 1
                         },
                         new
                         {
                             Id = 418,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 84,
                             Score = 2
                         },
                         new
                         {
                             Id = 419,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 84,
                             Score = 3
                         },
                         new
                         {
                             Id = 420,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 84,
                             Score = 4
                         },
                         new
                         {
                             Id = 421,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 85,
                             Score = 0
                         },
                         new
                         {
                             Id = 422,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 85,
                             Score = 1
                         },
                         new
                         {
                             Id = 423,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 85,
                             Score = 2
                         },
                         new
                         {
                             Id = 424,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 85,
                             Score = 3
                         },
                         new
                         {
                             Id = 425,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 85,
                             Score = 4
                         },
                         new
                         {
                             Id = 426,
-                            Description = "أبدًا",
+                            Description = "Never",
                             QuestionId = 86,
                             Score = 0
                         },
                         new
                         {
                             Id = 427,
-                            Description = "نادراً",
+                            Description = "Rarely",
                             QuestionId = 86,
                             Score = 1
                         },
                         new
                         {
                             Id = 428,
-                            Description = " أحياناً",
+                            Description = "Sometimes",
                             QuestionId = 86,
                             Score = 2
                         },
                         new
                         {
                             Id = 429,
-                            Description = " غالباً",
+                            Description = "Often",
                             QuestionId = 86,
                             Score = 3
                         },
                         new
                         {
                             Id = 430,
-                            Description = "كثيراً جداً",
+                            Description = "Very Often",
                             QuestionId = 86,
                             Score = 4
                         });
@@ -3933,32 +3936,32 @@ namespace Mind_Map.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "تصف الميل إلى الاجتماعي مقابل التحفظ",
-                            Name = "الانفتاح"
+                            Description = "Describes sociability vs. reservedness",
+                            Name = "Extraversion"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "التركيز على الأنماط مقابل الحقائق",
-                            Name = "الحدس"
+                            Description = "Focus on patterns vs. facts",
+                            Name = "Intuition"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "المنطق مقابل التعاطف",
-                            Name = "التفكير"
+                            Description = "Logic vs. empathy",
+                            Name = "Thinking"
                         },
                         new
                         {
                             Id = 4,
-                            Description = "التفضيل نحو النظام مقابل العفوية",
-                            Name = "الحكم"
+                            Description = "Preference for order vs. spontaneity",
+                            Name = "Judging"
                         },
                         new
                         {
                             Id = 5,
-                            Description = "الثقة بالنفس مقابل الحساسية",
-                            Name = "الحزم"
+                            Description = "Self-assurance vs. sensitivity",
+                            Name = "Assertiveness"
                         });
                 });
 
